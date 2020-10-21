@@ -1,0 +1,81 @@
+﻿@model List<The_Gym.Models.StudentFeePlaneModel>
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+@{
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>SR NO</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email ID</th>
+                            <th>Mobile</th>
+                            <th>Amount</th>
+                            <th>Plane Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ Int64 srno = new Int64();
+                                        srno = 1; }
+
+                        @foreach (var v in Model)
+                        {
+            <tr class="pointer even">
+                <td>@srno</td>
+                <td>@v.StudentModel.First_Name</td>
+                <td>@v.StudentModel.Last_Name</td>
+                <td>@v.StudentModel.Email_ID</td>
+                <td>@v.StudentModel.Mobile</td>
+                <td>@v.FeeModel.Payment_Amount</td>
+                <td>@v.PlaneModel.Name</td>
+            </tr>                srno += 1;
+                        }
+                    </tbody>
+                </table> }
+
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/buttons.html5.min.js"></script>
+    <script src="~/Scripts/buttons.print.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/buttons.bootstrap.min.js"></script>
+    <script src="~/Scripts/jszip.min.js"></script>
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // DataTable initialisation
+            $('#example').DataTable(
+                {
+                    "dom": '<"dt-buttons"Bf><"clear">lirtp',
+                    "paging": true,
+                    "autoWidth": true,
+                    "columnDefs": [
+                        { "orderable": false, "targets": 4 }
+                    ],
+                    "buttons": [
+                        'colvis',
+                        'copyHtml5',
+                        'csvHtml5',
+                        'excelHtml5',
+                        'pdfHtml5',
+                        'print'
+                    ]
+                }
+            );
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
+
+            $('#myModal').on('hidden.bs.modal', function (evt) {
+                $('.modal .modal-body').empty();
+            });
+        });
+    </script>
+}

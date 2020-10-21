@@ -1,0 +1,113 @@
+﻿@model List<The_Gym.Models.Branch_Wise_PlaneBranchModel>
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+@{
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>SR NO</th>
+                <th>Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ 
+                Int64 srnos = new Int64();
+                srnos = 1; 
+            }
+
+            @foreach (var v in Model)
+            {
+                <tr class="pointer even">
+                    <td>@srnos</td>
+                    <td>@v.Branch.Name</td>
+                    @if (v.Branch_Wise_PlaneModel.Status == true)
+                    {
+                        <td style="text-align: center;"><input type="checkbox" class="checkboxPrimary" value=@v.Branch_Wise_PlaneModel.ID checked></td>
+                    }
+                    else
+                    {
+                        <td style="text-align: center;"><input type="checkbox" class="checkboxPrimary" value=@v.Branch_Wise_PlaneModel.ID></td>
+                    }
+                </tr>
+                srnos += 1;
+            }
+        </tbody>
+    </table> 
+}
+
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/buttons.html5.min.js"></script>
+    <script src="~/Scripts/buttons.print.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/buttons.bootstrap.min.js"></script>
+    <script src="~/Scripts/jszip.min.js"></script>
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+
+    <script>
+        $(document).ready(function ()
+        {
+            // DataTable initialisation
+            $('#example').DataTable(
+                {
+                    "dom": '<"dt-buttons"Bf><"clear">lirtp',
+                    "paging": true,
+                    "autoWidth": true,
+                    "columnDefs": [
+                        { "orderable": false, "targets": 2 }
+                    ],
+                    "buttons": [
+                        'colvis',
+                        'copyHtml5',
+                        'csvHtml5',
+                        'excelHtml5',
+                        'pdfHtml5',
+                        'print'
+                    ]
+                }
+            );
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
+            //Delete buttons
+            $('.dt-delete').each(function () {
+                $(this).on('click', function (evt) {
+                    if (confirm("Are you sure to delete this row?")) {
+                        window.location.href = '/Plan/Delete/' + $(this).val();
+                    }
+                });
+            });
+
+            //Delete buttons
+            $('.checkboxPrimary').each(function () {
+                $(this).on('click', function (evt) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Plan/Branch_Wise_PlanStatus/",
+                        data: "ID=" + $(this).val(),
+                        success: function (text) {
+                            if (text == "success") {
+                                console.log("sucess");
+                            } else {
+                                console.log("error");
+                            }
+                        }
+                    });
+                });
+            });
+
+            $('#myModal').on('hidden.bs.modal', function (evt) {
+                $('.modal .modal-body').empty();
+            });
+        });
+    </script>
+}

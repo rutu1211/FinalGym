@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Gym Admin Panel</title>
+    <!-- Custom Theme files -->
+    <link href="~/Content/Login.css" rel="stylesheet" type="text/css" media="all" />
+    <!--Favicon Icon-->
+    <link rel="icon" type="image/png" href="~/Image/XYZ/favicon.png" />
+    <!--Login page css-->
+    <link href="~/Content/Login.css" rel="stylesheet" />
+
+
+    <!--Add Notification-->
+    <link rel="stylesheet" href="~/Content/adminlte.min.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/notification.css">
+
+    <!--Script-->
+    <script type="text/javascript" src="~/Scripts/jquery.min.1.js"></script>
+    <script src="~/Scripts/notification.js"></script>
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            $(function () {
+                var Success = '@TempData["Success"]';
+                if (Success != null) {
+                    createAlert('', 'Success', Success, 'success', false, true, 'pageMessages');
+                }
+            });
+        </script>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <script>
+            $(function () {
+                var Error = '@TempData["Error"]';
+                if (Error != null) {
+                    createAlert('', 'Error', Error, 'danger', false, true, 'pageMessages');
+                }
+            });
+        </script>
+    }
+    <!-- main -->
+    <div class="main-agile">
+        <div id="pageMessages"></div>
+        <div class="content">
+            <div class="top-grids">
+                <div class="top-grids-left">
+                    @RenderBody()
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //main -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>

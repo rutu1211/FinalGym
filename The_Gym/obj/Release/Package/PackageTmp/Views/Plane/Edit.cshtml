@@ -1,0 +1,166 @@
+﻿@model The_Gym.Models.PlaneModel
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/Content/select2.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/adminlte.min.css">
+    <link href="~/Content/main.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/notification.css">
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/notification.js"></script>
+</head>
+<body>
+    @if (TempData["Success"] != null)
+    {
+<script>
+            $(function () {
+                var Success = '@TempData["Success"]';
+                if (Success != null) {
+                    createAlert('', 'Success', Success, 'success', false, true, 'notification');
+                }
+            });
+</script>}
+    @if (TempData["Error"] != null)
+    {
+<script>
+            $(function () {
+                var Error = '@TempData["Error"]';
+                if (Error != null) {
+                    createAlert('', 'Error', Error, 'danger', false, true, 'notification');
+                }
+            });
+</script>}
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">Add Plane</h3>
+                </div>
+                <!-- /.card-header -->
+                @using (Html.BeginForm("Edit", "Plane", FormMethod.Post))
+                {
+    @Html.AntiForgeryToken()
+                    <div class="card-body" id="notification">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Duration)<span style="color: #FF0000;">*</span>
+                                    @Html.DropDownListFor(model => model.Duration, new SelectList(ViewBag.Plane_Duration), "Select Duration", new { @class = "form-control select2", @style = "width: 100%;" })
+                                    @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Duration_No)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Duration_No, new { @class = "form-control", @placeholder = "Duration No", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Duration_No, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Worth)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Worth, new { @class = "form-control", @placeholder = "Worth", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Worth, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.GST)
+                                    @Html.DropDownListFor(model => model.GST, new SelectList(ViewBag.Plane_GST), "Select GST Rate", new { @class = "form-control select2", @style = "width: 100%;" })
+                                    @Html.ValidationMessageFor(model => model.GST, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <button type="submit" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-success">
+                            Submit
+                        </button>
+                        <button type="button" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-danger" onclick="location.href='@Url.Action("Index", "Plane")';">
+                            Cancel
+                        </button>
+                    </div>}
+                <!-- /.card-body -->
+                <div class="card-footer">
+
+                </div>
+            </div>
+            <!-- /.card -->
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- /.content -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.min.js"></script>
+
+    <!-- Select2 -->
+    <script src="~/Scripts/select2.full.min.js"></script>
+
+    <!-- InputMask -->
+    <script src="~/Scripts/moment.min.js"></script>
+
+
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //$("body").on('click keypress', function () {
+            //    ResetThisSession();
+            //});
+        })
+
+            //var timeInSecondsAfterSessionOut = 600; // to change the session time out, change this value. Must be in seconds.
+            //var secondTick = 0;
+
+            //function ResetThisSession() {
+            //    secondTick = 0;
+            //}
+
+            //function StartThisSessionTimer() {
+            //    secondTick++;
+            //    var timeLeft = ((timeInSecondsAfterSessionOut - secondTick) / 60).toFixed(0); // in minutes
+            //    timeLeft = timeInSecondsAfterSessionOut - secondTick;
+            //    $("#spanTimeLeft").html(timeLeft);
+
+            //    if (secondTick > timeInSecondsAfterSessionOut) {
+            //        clearTimeout(tick);
+            //        window.location = "/Logout.aspx";
+            //        return;
+            //    }
+            //    tick = setTimeout("StartThisSessionTimer()", 1000);
+            //}
+
+            //StartThisSessionTimer();
+    </script>
+</body>
+</html>

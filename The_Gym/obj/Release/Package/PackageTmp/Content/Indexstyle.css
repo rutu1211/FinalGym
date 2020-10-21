@@ -1,0 +1,18 @@
+#example_filter label {
+    display: inline-block;
+}
+.dt-buttons{
+	width: 100%;
+}
+.dataTables_length{
+	width:100%;
+}
+.dataTables_length label{
+	width:100%;
+	display: inline-block;
+}
+
+
+        td:last-child {
+            text-align: center;
+        }

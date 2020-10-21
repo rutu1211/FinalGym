@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="The_CommonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="State_ID" Type="int" />
+    <Property Name="City_Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Country_Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Country_ID" Type="int" />
+    <Property Name="State_Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="The_CommonModelStoreContainer">
+    <EntitySet Name="City" EntityType="Self.City" Schema="The_Common" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="The_Common" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="The_Common" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

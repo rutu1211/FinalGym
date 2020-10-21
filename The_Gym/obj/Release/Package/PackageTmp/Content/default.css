@@ -1,0 +1,17 @@
+/* Base */
+a,
+.btn-link {
+	color: #0088cc;
+}
+
+	a:hover,
+	a:focus,
+	.btn-link:hover,
+	.btn-link:focus {
+		color: #0099e6;
+	}
+
+	a:active,
+	.btn-link:active {
+		color: #0077b3;
+	}

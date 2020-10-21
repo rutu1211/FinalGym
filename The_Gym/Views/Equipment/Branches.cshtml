@@ -1,0 +1,125 @@
+﻿@model List<The_Gym.Models.Branch_Wise_EquipmentBranchModel>
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+@{
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>SR NO</th>
+                <th>Name</th>
+                <th>Number Of Equipment</th>
+                <th style="text-align:center;width:100px;">
+                    Add row
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ 
+                Int64 srno = new Int64();
+                srno = 1; 
+            }
+
+            @foreach (var v in Model)
+            {
+                <tr class="pointer even">
+                    <td>@srno</td>
+                    <td>@v.BranchModel.Name</td>
+                    <td>@v.Branch_Wise_EquipmentModel.Number</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs" id="dt-sum" style="margin-right:6px;" value=@v.Branch_Wise_EquipmentModel.ID data-toggle="tooltip" data-placement="top" title="Delete">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs dt-subt" style="margin-right:6px;" value=@v.Branch_Wise_EquipmentModel.ID data-toggle="tooltip" data-placement="top" title="Delete">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>                
+                srno += 1;
+            }
+        </tbody>
+    </table> 
+}
+
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/buttons.html5.min.js"></script>
+    <script src="~/Scripts/buttons.print.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/buttons.bootstrap.min.js"></script>
+    <script src="~/Scripts/jszip.min.js"></script>
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $(document).ready(function () {
+            // DataTable initialisation
+            $('#example').DataTable(
+                {
+                    "dom": '<"dt-buttons"Bf><"clear">lirtp',
+                    "paging": true,
+                    "autoWidth": true,
+                    "columnDefs": [
+                        { "orderable": false, "targets": 3 }
+                    ],
+                    "buttons": [
+                        'colvis',
+                        'copyHtml5',
+                        'csvHtml5',
+                        'excelHtml5',
+                        'pdfHtml5',
+                        'print'
+                    ]
+                }
+            );
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
+            //Delete buttons
+            $("#dt-sum").each(function () {
+                $(this).on('click', function (evt) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Equipment/Add_Equipment/",
+                        data: "ID=" + $(this).val(),
+                        success: function (text) {
+                            if (text == "success") {
+                                $("#N_O_E").val(Number($("#N_O_E").val()) + 1);
+                            } else {
+                                console.log("error");
+                            }
+                        }
+                    });
+                });
+            });
+
+            //Delete buttons
+            $('.dt-subt').each(function () {
+                $(this).on('click', function (evt) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Equipment/Remove_Equipment/",
+                        data: "ID=" + $(this).val(),
+                        success: function (text) {
+                            if (text == "success") {
+                                $("#N_O_E").val(Number($("#N_O_E").val()) - 1);
+                            } else {
+                                console.log("error");
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+}

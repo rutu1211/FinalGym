@@ -1,0 +1,26 @@
+﻿@model The_Gym.Models.LoginModel
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@{
+    <div class="signin-form-grid">
+        <div class="signin-form">
+            <h2>Sign In Form</h2>
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "User Name", @autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "Validation_Message" })
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", @autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "Validation_Message" })
+                @Html.CheckBoxFor(model => model.Remember_Me, new { @id = "brand", @type = "checkbox" })
+                <label for="brand"><span></span> Remember me ?</label>
+                <input type="submit" value="SIGN IN">
+                <div class="signin-agileits-bottom">
+                    <p><a href="@Url.Action("Forgot_Password","Login", new { ID = 0 })">Forgot Password ?</a></p>
+                    <p><a href="@Url.Action("Signup","Login", new { ID = 0 })">Not a member? <b>Sign up now</b></a></p>
+                </div>
+            }
+        </div>
+    </div>
+}

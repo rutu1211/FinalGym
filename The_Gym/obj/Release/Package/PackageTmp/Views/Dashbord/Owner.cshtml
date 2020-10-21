@@ -1,0 +1,239 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="row">
+    <div class="col-lg-6 col-xl-4">
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Total Active Branches</div>
+                    @*<div class="widget-subheading">Last year expenses</div>*@
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-success"><span>@ViewBag.Total_Branch</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Total Members</div>
+                    @*<div class="widget-subheading">Total Clients Profit</div>*@
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-primary"><span>@ViewBag.Total_Student</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Total Trainers</div>
+                    @*<div class="widget-subheading">Total revenue streams</div>*@
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-warning"><span>@ViewBag.Total_Trainer</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Total Managers</div>
+                    <div class="widget-subheading">@*People Interested*@</div>
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-danger"><span>@ViewBag.Total_Manager</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Total Active Plans</div>
+                    <div class="widget-subheading">@*People Interested*@</div>
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-danger"><span>@ViewBag.Total_Plane</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Total Active Offers</div>
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-danger"><span>@ViewBag.Total_Offer</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Today's visitors</div>
+                    <div class="widget-subheading">@*People Interested*@</div>
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-danger"><span>@ViewBag.Visit</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="col-lg-6 col-xl-4">
+            <div class="card mb-3 widget-content">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Today's joinees</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-danger"><span>@ViewBag.Today_Joining</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-4">
+            <div class="card mb-3 widget-content">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">New Members</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-danger"><span>@ViewBag.New_Student</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-4">
+            <div class="card mb-3 widget-content">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Today's Earnings</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-danger"><span>@ViewBag.Today_Earning</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-4">
+            <div class="card mb-3 widget-content">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Month Earning</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-danger"><span>@ViewBag.Month_Earning</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+</div>
+
+<div style="text-align: center"> <h1> <b> Branch List </b> </h1> </div>
+
+<link rel="stylesheet" href="~/Content/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/buttons.bootstrap.min.css">
+<link href="~/Content/Indexstyle.css" rel="stylesheet">
+@{
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>SR NO</th>
+                            <th>Name</th>
+                            <th>Members</th>
+                            <th>Trainers</th>
+                            <th>Manager</th>
+                            <th>Plane</th>
+                            <th>Offer</th>
+                            <th>Visit</th>
+                            <th>Today's joinees</th>
+                            <th>New Member</th>
+                            <th>Today Earning</th>
+                            <th>Month Earning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @{ Int64 srno = new Int64();
+                                        srno = 1; }
+
+                        @foreach (var v in Model)
+                        {
+            <tr class="pointer even">
+                <td>@srno</td>
+                <td>@v.Branch.Name</td>
+                <td><a href="@Url.Action("Branch_Wise_Index","Student", new { ID = v.Branch.ID })" data-toggle="tooltip" data-placement="top" title="View Student">@v.Total.Student</a></td>
+                <td><a href="@Url.Action("Branch_Wise_Trainer_Index","Trainer", new { ID = v.Branch.ID, IDS = 3 })" data-toggle="tooltip" data-placement="top" title="View Trainer">@v.Total.Trainer</a></td>
+                <td><a href="@Url.Action("Branch_Wise_Trainer_Index","Trainer", new { ID = v.Branch.ID, IDS = 2 })" data-toggle="tooltip" data-placement="top" title="View Manager">@v.Total.Manager</a></td>
+                <td><a href="@Url.Action("Branch_Wise_Plane","Plane", new { ID = v.Branch.ID })" data-toggle="tooltip" data-placement="top" title="View Plane">@v.Total.Plane</a></td>
+                <td><a href="@Url.Action("Branch_Wise_Offer","Offer", new { ID = v.Branch.ID })" data-toggle="tooltip" data-placement="top" title="View Offer">@v.Total.Offer@*</a>*@</td>
+                <td><a href="@Url.Action("Today_Visit","Demo", new { ID = v.Branch.ID })" data-toggle="tooltip" data-placement="top" title="View Visit">@v.Total.Demo</a></td>
+                <td><a href="@Url.Action("Today_Joining","Demo", new { ID = v.Branch.ID })" data-toggle="tooltip" data-placement="top" title="View Fee">@v.Total.Today_Joining</a></td>
+                <td><a href="@Url.Action("New_Student","Student", new { ID = v.Branch.ID })" data-toggle="tooltip" data-placement="top" title="View Fee">@v.Total.New_Student</a></td>
+                <td><a href="@Url.Action("Today_Earning","Fee", new { ID = v.Branch.ID })" data-toggle="tooltip" data-placement="top" title="View Fee">@v.Total.Today_Earning</a></td>
+                <td><a href="@Url.Action("Month_Earning","Fee", new { ID = v.Branch.ID })" data-toggle="tooltip" data-placement="top" title="View Fee">@v.Total.Month_Earning</a></td>
+            </tr>
+                srno += 1;
+                        }
+                    </tbody>
+                </table> }
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/buttons.html5.min.js"></script>
+    <script src="~/Scripts/buttons.print.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/buttons.bootstrap.min.js"></script>
+    <script src="~/Scripts/jszip.min.js"></script>
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $(document).ready(function () {
+            // DataTable initialisation
+            $('#example').DataTable(
+                {
+                    "dom": '<"dt-buttons"Bf><"clear">lirtp',
+                    "paging": true,
+                    "autoWidth": true,
+                    "columnDefs": [
+                        { "orderable": false, "targets": 7 }
+                    ],
+                    "buttons": [
+                        'colvis',
+                        'copyHtml5',
+                        'csvHtml5',
+                        'excelHtml5',
+                        'pdfHtml5',
+                        'print'
+                    ]
+                }
+            );
+
+            //Delete buttons
+            $('.dt-delete').each(function () {
+                $(this).on('click', function (evt) {
+                    if (confirm("Are you sure to delete this row?")) {
+                        window.location.href = '/Branch/Delete/' + $(this).val();
+                    }
+                });
+            });
+        });
+    </script>
+}

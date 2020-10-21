@@ -1,0 +1,332 @@
+﻿@model The_Gym.Models.FeeModel
+@{
+    Layout = "~/Views/Shared/_CrudLayout.cshtml";
+}
+@{
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">Add Fee</h3>
+                </div>
+                <!-- /.card-header -->
+                @using (Html.BeginForm("Create", "Fee", FormMethod.Post, new { @class = "" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="card-body" id="notification">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Student_ID)<span style="color: #FF0000;">*</span>
+                                    @Html.DropDownListFor(model => model.Student_ID, new SelectList(ViewBag.Student_NAME, "ID", "Full_Name"), "Select Student", new { @class = "form-control select2", @style = "width: 100%;" })
+                                    @Html.ValidationMessageFor(model => model.Student_ID, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Plane_ID)<span style="color: #FF0000;">*</span>
+                                    @Html.DropDownListFor(model => model.Plane_ID, new SelectList(ViewBag.Planes_NAME, "ID", "Name"), "Select Plane", new { @class = "form-control select2", @style = "width: 100%;", @id = "Plane_ID" })
+                                    @Html.ValidationMessageFor(model => model.Plane_ID, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Start_Date)<span style="color: #FF0000;">*</span>
+                                    <div class="input-group date" data-date-format="dd.mm.yyyy">
+                                        @Html.TextBoxFor(model => model.Start_Date, "{0:yyyy-MM-dd}", new { @class = "form-control", @placeholder = "Start Date", @autocomplete = "off", @id = "Start_Date", @type = "date" })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Start_Date, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.End_Date)<span style="color: #FF0000;">*</span>
+                                    <div class="input-group date" data-date-format="dd.mm.yyyy">
+                                        @Html.TextBoxFor(model => model.End_Date, "{0:yyyy-MM-dd}", new { @class = "form-control", @placeholder = "End Date", @autocomplete = "off", @id = "End_Date", @type = "date" })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.End_Date, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Offer_ID)
+                                    @Html.DropDownListFor(model => model.Offer_ID, new SelectList(ViewBag.Offer_NAME, "ID", "Name"), "Select Offer", new { @class = "form-control select2", @style = "width: 100%;", @id = "Offer_ID" })
+                                    @Html.ValidationMessageFor(model => model.Offer_ID, "", new { @class = "" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Discount_On_Bill)<span style="color: #FF0000;"></span>
+                                    @Html.TextBoxFor(model => model.Discount_On_Bill, new { @class = "form-control", @placeholder = "Discount On Bill In Rs", @autocomplete = "off", @id = "Discount_Onbill", @onkeypress = "return CheckNumericKeyInfo(event.keyCode, event.which)", @onkeyup = "return isNumberKey(event)" })
+                                    @Html.ValidationMessageFor(model => model.Discount_On_Bill, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.GST)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.GST, new { @class = "form-control", @placeholder = "GST Amount", @autocomplete = "off", @id = "GST" })
+                                    @Html.ValidationMessageFor(model => model.GST, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Payment_Amount)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Payment_Amount, new { @class = "form-control", @placeholder = "Payment Amount", @autocomplete = "off", @id = "Payment_Amount" })
+                                    @Html.ValidationMessageFor(model => model.Payment_Amount, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                        <button type="submit" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-success">
+                            Submit
+                        </button>
+                        <button type="button" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-danger" onclick="location.href='@Url.Action("Index", "Fee")';">
+                            Cancel
+                        </button>
+                    </div>
+                }
+                <!-- /.card-body -->
+                <div class="card-footer">
+
+                </div>
+            </div>
+            <!-- /.card -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+}
+@section scripts {
+
+
+    <!-- Page script -->
+    <script>
+        var Plane_ID;
+        var Offer_ID;
+        var Start_Date;
+        var End_Date;
+        var Payment_Amount;
+        var Discount_Onbill;
+        var GST;
+        var duration; 
+        var durationNo;
+
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        });
+
+        $("#Plane_ID").change(function () {
+            Plane_ID = $(this).val();
+            Start_Date = $('#Start_Date');
+            End_Date = $('#End_Date');
+            Payment_Amount = $('#Payment_Amount');
+            GST = $('#GST');
+
+            if (Plane_ID == "") {
+                Plane_ID = 0
+            }
+            else {
+                Plane_ID = parseInt($(this).val())
+            }
+
+            Start_Date.empty();
+            End_Date.empty();
+            Payment_Amount.empty();
+            GST.empty();
+
+            $.ajax({
+                type: "POST",
+                url: "/Fee/GetPlaneName/",
+                dataType: 'json',
+                data: { ID: Plane_ID },
+                success: function (d) {
+                    console.log(d);
+                    if (d != null) {
+                        var today_date = new Date();
+                        var year = today_date.getFullYear();
+                        var month = today_date.getMonth() + 1;
+                        var day = today_date.getDate();
+                        var today_Date_Str = year + "-" + ((month < 9) ? "0" : "") + String(month) + "-" + ((day < 10) ? "0" : "") + String(day);
+                        $('#Start_Date').val(today_Date_Str);
+
+                        duration = null;
+                        duration = d.Duration;
+                        durationNo = null;
+                        durationNo = d.Duration_No;
+                        if (d.Duration == "Day") {
+                            day = day + parseInt(d.Duration_No);
+                        }
+                        else if (d.Duration == "Year") {
+                            year = year + parseInt(d.Duration_No)
+                        }
+                        else {
+                            month = month + parseInt(d.Duration_No);
+                        }
+                        var endDate = year + "-" + ((month < 9) ? "0" : "") + String(month) + "-" + ((day < 10) ? "0" : "") + String(day);
+                        $('#End_Date').val(endDate);
+
+                        $("#GST").val((d.GST));
+                        GST = parseInt((d.GST).replace('%', ''))
+                        $("#Payment_Amount").val(d.Worth + ((d.Worth * GST) / 100));
+                    }
+                },
+                error: function () {
+                    alert(Error);
+                }
+            });
+        });
+
+        $("#Offer_ID").change(function () {
+            Offer_ID = $(this).val();
+            GST = parseInt($("#GST").val())
+            Plane_ID = parseInt($("#Plane_ID").val());
+            Payment_Amount = $('#Payment_Amount');
+            Discount_Onbill = $("#Discount_Onbill").val();
+
+            if (Discount_Onbill == "") {
+                Discount_Onbill = 0
+            }
+            else {
+                Discount_Onbill = parseInt($("#Discount_Onbill").val())
+            }
+
+            if (Offer_ID == "") {
+                Offer_ID = 0
+            }
+            else {
+                Offer_ID = parseInt($(this).val())
+            }
+
+            Payment_Amount.empty();
+
+            $.ajax({
+                type: "POST",
+                url: "/Fee/GetOfferName/",
+                dataType: 'json',
+                data: { OFFER_ID: Offer_ID, Plan_ID: Plane_ID },
+                success: function (d) {
+                    console.log(d);
+                    if (d != null) {
+                        var Amounts = ((d.Plan.Worth - ((d.Plan.Worth * d.Offer.Discount) / 100)) - Discount_Onbill);
+                        Amounts = (Amounts + ((Amounts * GST) / 100));
+                        $("#Payment_Amount").val(Amounts);
+                    }
+                },
+                error: function () {
+                    alert(Error);
+                }
+            });
+        });
+
+        $("#Start_Date").change(function () {
+            if (durationNo != null && duration != null) {
+                var start_date = new Date($('#Start_Date').val());
+                var year = start_date.getFullYear();
+                var month = start_date.getMonth() + 1;
+                var day = start_date.getDate();
+                if (duration == "Day") {
+                    day = day + parseInt(durationNo);
+                }
+                else if (duration == "Year") {
+                    year = year + parseInt(durationNo)
+                }
+                else {
+                    month = month + parseInt(durationNo);
+                }
+                var endDate = year + "-" + ((month < 9) ? "0" : "") + String(month) + "-" + ((day < 10) ? "0" : "") + String(day);
+                $('#End_Date').val(endDate);
+            }
+        });
+
+        function CheckNumericKeyInfo(char1, mozChar) {
+            if (mozChar != null) {
+                if ((mozChar >= 48 && mozChar <= 57) || char1 == 8)
+                    RetVal = true;
+                else {
+                    RetVal = false;
+                }
+            }
+            else {
+                if ((char1 >= 48 && char1 <= 57) || char1 == 8) RetVal = true;
+                else {
+                    RetVal = false;
+                }
+            }
+            return RetVal;
+        }
+
+        function isNumberKey(evt) {
+            Offer_ID = $("#Offer_ID").val();
+            GST = parseInt($("#GST").val())
+            Plane_ID = parseInt($("#Plane_ID").val()); 
+            Payment_Amount = $('#Payment_Amount');
+            Discount_Onbill = $("#Discount_Onbill").val();
+
+            if (Discount_Onbill == "") {
+                Discount_Onbill = 0
+            }
+            else {
+                Discount_Onbill = parseInt($("#Discount_Onbill").val())
+            }
+
+            if (Offer_ID == "") {
+                Offer_ID = 0
+            }
+            else {
+                Offer_ID = parseInt($("#Offer_ID").val())
+            }
+            Payment_Amount.empty();
+
+            $.ajax({
+                type: "POST",
+                url: "/Fee/GetOfferName/",
+                dataType: 'json',
+                data: { OFFER_ID: Offer_ID, Plan_ID: Plane_ID },
+                success: function (d) {
+                    console.log(d);
+                    if (d != null) {
+                        var Amounts
+                        if (d.Offer != null) {
+                            Amounts = ((d.Plan.Worth - ((d.Plan.Worth * d.Offer.Discount) / 100)) - Discount_Onbill);
+                        }
+                        else {
+                            Amounts = (d.Plan.Worth - Discount_Onbill);
+                        }
+                        Amounts = (Amounts + ((Amounts * GST) / 100));
+                        $("#Payment_Amount").val(Amounts);
+                    }
+                },
+                error: function () {
+                    alert(Error);
+                }
+            });
+        }
+    </script>
+}

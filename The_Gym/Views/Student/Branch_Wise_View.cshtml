@@ -1,0 +1,207 @@
+﻿@model The_Gym.Models.StudentModel
+@{ Layout = "~/Views/Shared/_CrudLayout.cshtml"; }
+@{ <!-- Main content -->
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Add Student</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        @using (Html.BeginForm("Gym_Wise_Create", "Student", FormMethod.Post, new { @class = "" }))
+                                        {
+                            @Html.AntiForgeryToken()
+                                            <div class="card-body">
+                                                <div style="text-align: center;"><b>Personal Information</b></div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Branch_ID)<span style="color: #FF0000;">*</span>
+                                                            @Html.DropDownListFor(model => model.Branch_ID, new SelectList(ViewBag.Branch_Name, "ID", "Name"), "Select Branch", new { @class = "form-control select2", @style = "width: 100%;", @id = "Branch_ID", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Branch_ID, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.First_Name)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.First_Name, new { @class = "form-control", @placeholder = "First Name", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.row -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Last_Name)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Last_Name, new { @class = "form-control", @placeholder = "Last Name", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Last_Name, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Email_ID)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Email_ID, new { @class = "form-control", @placeholder = "Email ID", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Email_ID, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.row -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.DOB)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @placeholder = "Date Of Birth", @autocomplete = "off", @id = "DOB", @disabled = "disabled", @type = "date" })
+                                                            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Trainer_ID)<span style="color: #FF0000;">*</span>
+                                                            @Html.DropDownListFor(model => model.Trainer_ID, new SelectList(ViewBag.Trainer_NAME, "ID", "Full_Name"), "Select Trainer", new { @class = "form-control select2", @style = "width: 100%;", @id = "Trainer_ID", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Trainer_ID, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.row -->
+                                                <!-- /.row -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Mobile)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Mobile, new { @class = "form-control", @placeholder = "Concact No", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Emergency)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Emergency, new { @class = "form-control", @placeholder = "Emergency Concact No", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Emergency, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.row -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Occupation)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Occupation, new { @class = "form-control", @placeholder = "Occupation", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Occupation, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Reference)
+                                                            @Html.TextBoxFor(model => model.Reference, new { @class = "form-control", @placeholder = "Reference", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Reference, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.row -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Disease)
+                                                            @Html.TextBoxFor(model => model.Disease, new { @class = "form-control", @placeholder = "Disease", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Disease, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.row -->
+
+                                                <div style="text-align: center;"><b>Residential Information</b></div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Building_Name)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Building_Name, new { @class = "form-control", @placeholder = "Building Name", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Building_Name, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Area)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Area, new { @class = "form-control", @placeholder = "Area", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Area, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.row -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Landmark)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Landmark, new { @class = "form-control", @placeholder = "Landmark", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Landmark, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Pin_Code)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Pin_Code, new { @class = "form-control", @placeholder = "Pin Code", @autocomplete = "off", @disabled = "disabled" })
+                                                            @Html.ValidationMessageFor(model => model.Pin_Code, "", new { @class = "Validation_Message" })
+
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+
+                                                <button type="button" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-success" onclick="location.href = '@Url.Action("GYM_Wise_Trainer_Edit", "Student", new { ID = Model.ID })'">
+                                                    Edit
+                                                </button>
+                                                <button type="button" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-danger" onclick="location.href = '@Url.Action("GYM_Wise_Trainer_Index", "Student", new { ID = Model.Branch_ID })'">
+                                                    Back
+                                                </button>
+                                            </div>}
+                                        <!-- /.card-body -->
+                                        <div class="card-footer">
+
+                                        </div>
+                                    </div>
+                                    <!-- /.card -->
+                                </div><!-- /.container-fluid -->
+                            </section> <!-- /.content --> }
+@section scripts {
+
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+        })
+    </script>
+}
+
+

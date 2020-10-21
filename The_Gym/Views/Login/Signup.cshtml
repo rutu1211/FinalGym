@@ -1,0 +1,33 @@
+﻿@model The_Gym.Models.SignupModel
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@{
+    <div class="signin-form signup-form">
+        <h3>Sign Up Form</h3>
+        @using (Html.BeginForm("Signup", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.TextBoxFor(model => model.Gym_Name, new { @class = "form-control", @placeholder = "Gym Name", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Gym_Name, "", new { @class = "Validation_Message" })
+            @Html.HiddenFor(model => model.ID)
+
+            @Html.TextBoxFor(model => model.First_Name, new { @class = "form-control", @placeholder = "Owner First Name", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "Validation_Message" })
+
+            @Html.TextBoxFor(model => model.Last_Name, new { @class = "form-control", @placeholder = "Owner Last Name", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Last_Name, "", new { @class = "Validation_Message" })
+
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Owner Email", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "Validation_Message" })
+            @Html.CheckBoxFor(model => model.Terms_of_Service, new { @id = "brand1", @type = "checkbox" })
+
+            @*<label for="brand1"><span></span>I accept the terms of use</label>
+                @Html.ValidationMessageFor(model => model.Terms_of_Service, "", new { @class = "Validation_Message" })*@
+            <input type="submit" value="SIGN UP">
+            <div class="signin-agileits-bottom">
+                <p><a href="@Url.Action("Logout", "Login")"><i class="fa fa-arrow-left" aria-hidden="true"></i> Cancel and go back to Login page</a></p>
+            </div>
+        }
+    </div>
+}

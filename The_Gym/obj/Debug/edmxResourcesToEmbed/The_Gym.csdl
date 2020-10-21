@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="The_GymModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="The_GymEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Branches" EntityType="The_GymModel.Branch" />
+    <EntitySet Name="Branch_Wise_Equipment" EntityType="The_GymModel.Branch_Wise_Equipment" />
+    <EntitySet Name="Branch_Wise_Offer" EntityType="The_GymModel.Branch_Wise_Offer" />
+    <EntitySet Name="Branch_Wise_Plane" EntityType="The_GymModel.Branch_Wise_Plane" />
+    <EntitySet Name="Cities" EntityType="The_GymModel.City" />
+    <EntitySet Name="Countries" EntityType="The_GymModel.Country" />
+    <EntitySet Name="Demoes" EntityType="The_GymModel.Demo" />
+    <EntitySet Name="Equipments" EntityType="The_GymModel.Equipment" />
+    <EntitySet Name="Fees" EntityType="The_GymModel.Fee" />
+    <EntitySet Name="GYMs" EntityType="The_GymModel.GYM" />
+    <EntitySet Name="Offers" EntityType="The_GymModel.Offer" />
+    <EntitySet Name="Planes" EntityType="The_GymModel.Plane" />
+    <EntitySet Name="States" EntityType="The_GymModel.State" />
+    <EntitySet Name="Students" EntityType="The_GymModel.Student" />
+    <EntitySet Name="Trainers" EntityType="The_GymModel.Trainer" />
+    <EntitySet Name="GYM_Fee" EntityType="The_GymModel.GYM_Fee" />
+    <EntitySet Name="GYM_Plan" EntityType="The_GymModel.GYM_Plan" />
+  </EntityContainer>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Building_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Landmark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City_ID" Type="Int32" />
+    <Property Name="State_ID" Type="Int32" />
+    <Property Name="Country_ID" Type="Int32" />
+    <Property Name="Pin_Code" Type="Int32" />
+    <Property Name="IS_Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Branch_Wise_Equipment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <Property Name="Equipment_ID" Type="Int32" />
+    <Property Name="Number" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Branch_Wise_Offer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <Property Name="Offer_ID" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Branch_Wise_Plane">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <Property Name="Plane_ID" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="City_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SortName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CountryNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneCode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Demo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Start_Date" Type="DateTime" Precision="3" />
+    <Property Name="Interested_Plane_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Video" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Fee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Student_ID" Type="Int32" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <Property Name="Plane_ID" Type="Int32" />
+    <Property Name="Offer_ID" Type="Int32" />
+    <Property Name="Start_Date" Type="DateTime" Precision="3" />
+    <Property Name="End_Date" Type="DateTime" Precision="3" />
+    <Property Name="Payment_Date" Type="DateTime" Precision="3" />
+    <Property Name="Discount_On_Bill_Type" Type="Int32" />
+    <Property Name="Discount_On_Bill" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Payment_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="GST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GST_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="GYM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_Active" Type="Boolean" />
+    <Property Name="Plan_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Offer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Start_Date" Type="DateTime" Precision="3" />
+    <Property Name="End_Date" Type="DateTime" Precision="3" />
+    <Property Name="Discount_Type" Type="Int32" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Plane">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Worth" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Duration_No" Type="Int32" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <Property Name="GST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <Property Name="Trainer_ID" Type="Int32" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="Building_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Landmark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City_ID" Type="Int32" />
+    <Property Name="State_ID" Type="Int32" />
+    <Property Name="Country_ID" Type="Int32" />
+    <Property Name="Pin_Code" Type="Int32" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Emergency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Reference" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Disease" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Start_Date" Type="DateTime" Precision="3" />
+    <Property Name="Current_Package_ID" Type="Int32" />
+    <Property Name="Special_Instrucation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Trainer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GYM_ID" Type="Int32" />
+    <Property Name="Role_ID" Type="Int32" />
+    <Property Name="Branvch_ID" Type="Int32" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Building_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Landmark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City_ID" Type="Int32" />
+    <Property Name="State_ID" Type="Int32" />
+    <Property Name="Country_ID" Type="Int32" />
+    <Property Name="Pin_Code" Type="Int32" />
+    <Property Name="IS_Active" Type="Boolean" />
+    <Property Name="Joining_Date" Type="DateTime" Precision="3" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GYM_Fee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Plan_ID" Type="Int32" />
+    <Property Name="Start_Date" Type="DateTime" Precision="3" />
+    <Property Name="End_Date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GYM_Plan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Worth" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Duracation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Duracation_NO" Type="Int32" />
+    <Property Name="Number_Of_Student" Type="Int32" />
+  </EntityType>
+</Schema>

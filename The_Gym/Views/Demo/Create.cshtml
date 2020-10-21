@@ -1,0 +1,102 @@
+﻿@model The_Gym.Models.DemoModel
+@{
+    Layout = "~/Views/Shared/_CrudLayout.cshtml";
+}
+@{
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">Create Visit</h3>
+                </div>
+                <!-- /.card-header -->
+                @using (Html.BeginForm("Create", "Demo", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="card-body" id="notification">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.First_Name)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.First_Name, new { @class = "form-control", @placeholder = "First Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Last_Name)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Last_Name, new { @class = "form-control", @placeholder = "Last Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Last_Name, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email_ID)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Email_ID, new { @class = "form-control", @placeholder = "Email ID", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Email_ID, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Mobile)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Mobile, new { @class = "form-control", @placeholder = "Mobile", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Start_Date)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Start_Date, new { @class = "form-control", @placeholder = "Start Date", @autocomplete = "off", @id = "Start_Date", @type = "date" })
+                                    @Html.ValidationMessageFor(model => model.Start_Date, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Interested_Plane_ID)<span style="color: #FF0000;">*</span>
+                                    @Html.DropDownListFor(model => model.Interested_Plane_ID, new SelectList(ViewBag.Plane_NAME, "ID", "Name"), "Select Plane", new { @class = "form-control select2", @style = "width: 100%;" })
+                                    @Html.ValidationMessageFor(model => model.Interested_Plane_ID, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <button type="submit" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-success">
+                            Submit
+                        </button>
+                        <button type="button" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-danger" onclick="location.href='@Url.Action("Index", "Demo")';">
+                            Cancel
+                        </button>
+                    </div>
+                }
+                <!-- /.card-body -->
+                <div class="card-footer">
+
+                </div>
+            </div>
+            <!-- /.card -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+}

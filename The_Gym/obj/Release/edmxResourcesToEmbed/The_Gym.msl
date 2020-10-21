@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="The_GymModelStoreContainer" CdmEntityContainer="The_GymEntities">
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="The_GymModel.Branch">
+        <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="IS_Active" ColumnName="IS_Active" />
+          <ScalarProperty Name="Pin_Code" ColumnName="Pin_Code" />
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="State_ID" ColumnName="State_ID" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="Landmark" ColumnName="Landmark" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Building_Name" ColumnName="Building_Name" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branch_Wise_Equipment">
+      <EntityTypeMapping TypeName="The_GymModel.Branch_Wise_Equipment">
+        <MappingFragment StoreEntitySet="Branch_Wise_Equipment">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branch_Wise_Offer">
+      <EntityTypeMapping TypeName="The_GymModel.Branch_Wise_Offer">
+        <MappingFragment StoreEntitySet="Branch_Wise_Offer">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Offer_ID" ColumnName="Offer_ID" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branch_Wise_Plane">
+      <EntityTypeMapping TypeName="The_GymModel.Branch_Wise_Plane">
+        <MappingFragment StoreEntitySet="Branch_Wise_Plane">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Plane_ID" ColumnName="Plane_ID" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="The_GymModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="State_ID" ColumnName="State_ID" />
+          <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="The_GymModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="PhoneCode" ColumnName="PhoneCode" />
+          <ScalarProperty Name="CountryNames" ColumnName="CountryNames" />
+          <ScalarProperty Name="SortName" ColumnName="SortName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Demoes">
+      <EntityTypeMapping TypeName="The_GymModel.Demo">
+        <MappingFragment StoreEntitySet="Demo">
+          <ScalarProperty Name="Interested_Plane_ID" ColumnName="Interested_Plane_ID" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipments">
+      <EntityTypeMapping TypeName="The_GymModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="Video" ColumnName="Video" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fees">
+      <EntityTypeMapping TypeName="The_GymModel.Fee">
+        <MappingFragment StoreEntitySet="Fee">
+          <ScalarProperty Name="GST_Amount" ColumnName="GST_Amount" />
+          <ScalarProperty Name="GST" ColumnName="GST" />
+          <ScalarProperty Name="Payment_Amount" ColumnName="Payment_Amount" />
+          <ScalarProperty Name="Discount_On_Bill" ColumnName="Discount_On_Bill" />
+          <ScalarProperty Name="Discount_On_Bill_Type" ColumnName="Discount_On_Bill_Type" />
+          <ScalarProperty Name="Payment_Date" ColumnName="Payment_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="Offer_ID" ColumnName="Offer_ID" />
+          <ScalarProperty Name="Plane_ID" ColumnName="Plane_ID" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GYMs">
+      <EntityTypeMapping TypeName="The_GymModel.GYM">
+        <MappingFragment StoreEntitySet="GYM">
+          <ScalarProperty Name="Pro" ColumnName="Pro" />
+          <ScalarProperty Name="IS_Active" ColumnName="IS_Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Offers">
+      <EntityTypeMapping TypeName="The_GymModel.Offer">
+        <MappingFragment StoreEntitySet="Offer">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Discount_Type" ColumnName="Discount_Type" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Planes">
+      <EntityTypeMapping TypeName="The_GymModel.Plane">
+        <MappingFragment StoreEntitySet="Plane">
+          <ScalarProperty Name="GST" ColumnName="GST" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Duration_No" ColumnName="Duration_No" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Worth" ColumnName="Worth" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="The_GymModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="The_GymModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Special_Instrucation" ColumnName="Special_Instrucation" />
+          <ScalarProperty Name="Current_Package_ID" ColumnName="Current_Package_ID" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="Disease" ColumnName="Disease" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+          <ScalarProperty Name="Emergency" ColumnName="Emergency" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Pin_Code" ColumnName="Pin_Code" />
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="State_ID" ColumnName="State_ID" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="Landmark" ColumnName="Landmark" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Building_Name" ColumnName="Building_Name" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Trainer_ID" ColumnName="Trainer_ID" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trainers">
+      <EntityTypeMapping TypeName="The_GymModel.Trainer">
+        <MappingFragment StoreEntitySet="Trainer">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Joining_Date" ColumnName="Joining_Date" />
+          <ScalarProperty Name="IS_Active" ColumnName="IS_Active" />
+          <ScalarProperty Name="Pin_Code" ColumnName="Pin_Code" />
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="State_ID" ColumnName="State_ID" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="Landmark" ColumnName="Landmark" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Building_Name" ColumnName="Building_Name" />
+          <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Branvch_ID" ColumnName="Branvch_ID" />
+          <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+          <ScalarProperty Name="GYM_ID" ColumnName="GYM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

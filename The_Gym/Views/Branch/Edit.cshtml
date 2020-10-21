@@ -1,0 +1,202 @@
+﻿@model The_Gym.Models.BranchModel
+
+@{ 
+    Layout = "~/Views/Shared/_CrudLayout.cshtml"; 
+}
+
+@{ 
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">Edit Branch</h3>
+                </div>
+                <!-- /.card-header -->
+                @using (Html.BeginForm("Edit", "Branch", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="card-body" id="notification">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Country_ID)<span style="color: #FF0000;">*</span>
+                                    @Html.DropDownListFor(model => model.Country_ID, new SelectList(ViewBag.Countrie_Name, "ID", "CountryNames"), "Select Country", new { @class = "form-control select2", @style = "width: 100%;", @id = "Country_ID" })
+                                    @Html.ValidationMessageFor(model => model.Country_ID, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.State_ID)<span style="color: #FF0000;">*</span>
+                                    @Html.DropDownListFor(model => model.State_ID, new SelectList(ViewBag.State_Name, "ID", "StateName"), "Select State", new { @class = "form-control select2", @style = "width: 100%;", @id = "selectStateFromCountry" })
+                                    @Html.ValidationMessageFor(model => model.State_ID, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.City_ID)<span style="color: #FF0000;">*</span>
+                                    @Html.DropDownListFor(model => model.City_ID, new SelectList(ViewBag.City_Name, "ID", "City_Name"), "Select City", new { @class = "form-control select2", @style = "width: 100%;", @id = "selectCityFromState" })
+                                    @Html.ValidationMessageFor(model => model.City_ID, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Building_Name)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Building_Name, new { @class = "form-control", @placeholder = "Building Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Building_Name, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Area)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Area, new { @class = "form-control", @placeholder = "Landmark", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Area, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Landmark)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Landmark, new { @class = "form-control", @placeholder = "Landmark", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Landmark, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Pin_Code)<span style="color: #FF0000;">*</span>
+                                    @Html.TextBoxFor(model => model.Pin_Code, new { @class = "form-control", @placeholder = "Pin Code", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.Pin_Code, "", new { @class = "Validation_Message" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <button type="submit" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-success">
+                            Submit
+                        </button>
+                        <button type="button" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-danger" onclick="location.href='@Url.Action("Index","Branch")';">
+                            Cancel
+                        </button>
+                    </div>            
+                }
+                <!-- /.card-body -->
+                <div class="card-footer">
+
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.container-fluid -->
+    </section> 
+    <!-- /.content --> 
+}
+
+@section scripts {
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2();
+        });
+
+        $("#Country_ID").change(function () {
+            var CountryId = $(this).val();
+            var ddlState = $('#selectStateFromCountry');
+            var ddlCity = $('#selectCityFromState');
+
+            if (CountryId == "") {
+                CountryId = 0
+            }
+            else {
+                CountryId = parseInt($(this).val())
+            }
+
+            ddlState.empty();
+            ddlCity.empty();
+            ddlState.append($("<option></option>").val('').html('Please wait ...'));
+            $.ajax({
+                type: "GET",
+                url: "/Branch/Get_State_Name/",
+                dataType: 'json',
+                data: { ID: CountryId },
+                success: function (d) {
+                    ddlState.empty(); // Clear the please wait
+                    ddlState.append($("<option></option>").val('').html('Select State'));
+                    $.each(d, function () {
+                        ddlState.append($("<option     />").val(this.StateId).text(this.StateName));
+                    });
+                },
+                error: function () {
+                    //alert(Error);
+                }
+            });
+            $(this).valid();
+        });
+
+        $("#selectStateFromCountry").change(function () {
+            var CountryId = $(this).val();
+            var ddlState = $('#selectStateFromCountry');
+
+            if (CountryId == "") {
+                CountryId = 0
+            }
+            else {
+                CountryId = parseInt($(this).val())
+            }
+
+            ddlState.empty();
+            ddlState.append($("<option></option>").val('').html('Please wait ...'));
+            $.ajax({
+                type: "GET",
+                url: "/Branch/Get_City_Name/",
+                dataType: 'json',
+                data: { ID: CountryId },
+                success: function (d) {
+                    ddlState.empty(); // Clear the please wait
+                    ddlState.append($("<option></option>").val('').html('Select City'));
+                    $.each(d, function () {
+                        ddlState.append($("<option     />").val(this.StateId).text(this.StateName));
+                    });
+                },
+                error: function () {
+                    //alert(Error);
+                }
+            });
+            $(this).valid();
+        });
+    </script>
+}

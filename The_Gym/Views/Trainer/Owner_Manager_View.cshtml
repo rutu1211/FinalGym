@@ -1,0 +1,80 @@
+﻿@model The_Gym.Models.TrainerModel
+@{ Layout = "~/Views/Shared/_CrudLayout.cshtml"; }
+@{ <!-- Main content -->
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            @*<h3 class="card-title">Add Manager</h3>*@
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.First_Name)<span style="color: #FF0000;">*</span>
+                                                        @Html.TextBoxFor(model => model.First_Name, new { @class = "form-control", @autocomplete = "off", @disabled = "disabled" })
+                                                        @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "" })
+                                                    </div>
+                                                    <!-- /.form-group -->
+                                                </div>
+                                                <!-- /.col -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Last_Name)<span style="color: #FF0000;">*</span>
+                                                        @Html.TextBoxFor(model => model.Last_Name, new { @class = "form-control", @autocomplete = "off", @disabled = "disabled" })
+                                                        @Html.ValidationMessageFor(model => model.Last_Name, "", new { @class = "" })
+                                                    </div>
+                                                    <!-- /.form-group -->
+                                                </div>
+                                                <!-- /.col -->
+
+                                            </div>
+                                            <!-- /.row -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Branvch_ID)<span style="color: #FF0000;">*</span>
+                                                        @Html.DropDownListFor(model => model.Branvch_ID, new SelectList(ViewBag.Branch_NAME, "ID", "Name"), "Select Branch", new { @class = "form-control select2", @style = "width: 100%;", @disabled = "disabled" })
+                                                        @Html.ValidationMessageFor(model => model.Branvch_ID, "", new { @class = "" })
+                                                    </div>
+                                                    <!-- /.form-group -->
+                                                </div>
+                                                <!-- /.col -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Email_ID)<span style="color: #FF0000;">*</span>
+                                                        @Html.TextBoxFor(model => model.Email_ID, new { @class = "form-control", @autocomplete = "off", @disabled = "disabled" })
+                                                        @Html.ValidationMessageFor(model => model.Email_ID, "", new { @class = "" })
+                                                    </div>
+                                                    <!-- /.form-group -->
+                                                </div>
+                                                <!-- /.col -->
+                                            </div>
+                                            <!-- /.row -->
+                                            <button type="button" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-success" onclick="location.href = '@Url.Action("Branch_Wise_Trainer_Edit", "Trainer", new { ID = Model.ID })'">
+                                                Edit
+                                            </button>
+                                            <button type="button" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-danger" onclick="location.href = '@Url.Action("Branch_Wise_Trainer_Index", "Trainer", new { ID = Model.Branvch_ID, IDS = Model.Role_ID })'">
+                                                Back
+                                            </button>
+                                        </div>
+
+                                        <!-- /.card-body -->
+                                        <div class="card-footer">
+
+                                        </div>
+                                    </div>
+                                    <!-- /.card -->
+                                </div><!-- /.container-fluid -->
+                            </section> <!-- /.content --> }
+@section scripts {
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        })
+    </script>
+}

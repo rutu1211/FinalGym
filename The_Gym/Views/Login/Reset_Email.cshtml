@@ -1,0 +1,27 @@
+﻿@model The_Gym.Models.Reset_EmailModel
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@{
+    <div class="signin-form reset-password">
+        <h3>Reset Email</h3>
+        @using (Html.BeginForm("Reset_Email", "Login", FormMethod.Post))
+        {
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "Validation_Message" })
+            @Html.TextBoxFor(model => model.Repeat_Email, new { @class = "form-control", @placeholder = "Repeat Email", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "Validation_Message" })
+            <input type="submit" class="send" value="Update Password">
+            <div class="signin-agileits-bottom">
+                @if (Model.Role_ID == 1)
+                {
+                    <p><a href="@Url.Action("Owner", "Dashbord", new { ID = 0 })">Cancel and go back to Dashbord</a></p>
+                }
+                @if (Model.Role_ID == 2)
+                {
+                    <p><a href="@Url.Action("Manager", "Dashbord", new { ID = 0 })">Cancel and go back to Dashbord</a></p>
+                }
+            </div>
+        }
+    </div>
+}

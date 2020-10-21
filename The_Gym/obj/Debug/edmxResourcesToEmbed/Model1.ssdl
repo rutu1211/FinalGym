@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="The_GymModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Company" Type="varchar" MaxLength="50" />
+    <Property Name="Area" Type="varchar" MaxLength="50" />
+    <Property Name="Landmark" Type="varchar" MaxLength="50" />
+    <Property Name="City_ID" Type="int" />
+    <Property Name="State_ID" Type="int" />
+    <Property Name="Country_ID" Type="int" />
+    <Property Name="Pin_Code" Type="int" />
+    <Property Name="IS_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Demo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="First_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Start_Date" Type="datetime" />
+    <Property Name="Interested_Plane_ID" Type="int" />
+    <Property Name="Form_Fee" Type="bit" />
+  </EntityType>
+  <EntityType Name="Diet_Plane">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="Student_ID" Type="int" />
+    <Property Name="Time" Type="varchar" MaxLength="50" />
+    <Property Name="Item" Type="varchar" MaxLength="50" />
+    <Property Name="Protein" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="Fat" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="Carbs" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="Energy" Type="decimal" Precision="4" Scale="2" />
+  </EntityType>
+  <EntityType Name="Extended_Policy">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="int" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="Reason" Type="varchar(max)" />
+    <Property Name="Approve" Type="bit" />
+    <Property Name="Start_Date" Type="datetime" />
+    <Property Name="End_Date" Type="datetime" />
+    <Property Name="Extended_day" Type="int" />
+  </EntityType>
+  <EntityType Name="Fee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Student_ID" Type="int" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="Payment_ID" Type="int" />
+    <Property Name="Plane_ID" Type="int" />
+    <Property Name="Start_Date" Type="datetime" />
+    <Property Name="End_Date" Type="datetime" />
+    <Property Name="Payment_Date" Type="datetime" />
+    <Property Name="Payment_Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Extended_Day" Type="int" />
+  </EntityType>
+  <EntityType Name="Muscle">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="Student_ID" Type="int" />
+    <Property Name="Weight" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Height" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Neck" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Shoulder" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Chest" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UABS" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Waist" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="LABS" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Hips" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Thighs" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Calf" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UARMS" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Forearm" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Fat" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="VFAT" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BMI" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Kcal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Biceps" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Triceps" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Leg" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Back" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Offer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Start_Date" Type="datetime" />
+    <Property Name="End_Date" Type="datetime" />
+    <Property Name="Discount" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="Plane_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Payment_Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Plane">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Worth" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Duration" Type="int" />
+    <Property Name="Extend" Type="bit" />
+    <Property Name="Max_Extend_Day" Type="int" />
+  </EntityType>
+  <EntityType Name="Problem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="Student_ID" Type="int" />
+    <Property Name="Problem_Type" Type="int" />
+    <Property Name="Problem" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Role_ID" Type="int" />
+    <Property Name="Created_Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Problem_Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Day" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="Trainer_ID" Type="int" />
+    <Property Name="First_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Profile" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Company" Type="varchar" MaxLength="50" />
+    <Property Name="Area" Type="varchar" MaxLength="50" />
+    <Property Name="Landmark" Type="varchar" MaxLength="50" />
+    <Property Name="City_ID" Type="int" />
+    <Property Name="State_ID" Type="int" />
+    <Property Name="Country_ID" Type="int" />
+    <Property Name="Pin_Code" Type="int" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Emergency" Type="varchar" MaxLength="50" />
+    <Property Name="Occupation" Type="varchar" MaxLength="50" />
+    <Property Name="Reference" Type="varchar" MaxLength="50" />
+    <Property Name="Disease" Type="varchar" MaxLength="50" />
+    <Property Name="Start_Date" Type="datetime" />
+    <Property Name="Current_Package_ID" Type="int" />
+    <Property Name="Special_Instrucation" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Trainer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role_ID" Type="int" />
+    <Property Name="Branvch_ID" Type="int" />
+    <Property Name="First_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Profile" Type="varchar(max)" />
+    <Property Name="Company" Type="varchar" MaxLength="50" />
+    <Property Name="Area" Type="varchar" MaxLength="50" />
+    <Property Name="Landmark" Type="varchar" MaxLength="50" />
+    <Property Name="City_ID" Type="int" />
+    <Property Name="State_ID" Type="int" />
+    <Property Name="Country_ID" Type="int" />
+    <Property Name="Pin_Code" Type="int" />
+    <Property Name="IS_Active" Type="bit" />
+    <Property Name="Joining_Date" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="The_GymModelStoreContainer">
+    <EntitySet Name="Branch" EntityType="Self.Branch" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Demo" EntityType="Self.Demo" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Diet_Plane" EntityType="Self.Diet_Plane" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Extended_Policy" EntityType="Self.Extended_Policy" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Fee" EntityType="Self.Fee" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Muscle" EntityType="Self.Muscle" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Offer" EntityType="Self.Offer" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Payment_Type" EntityType="Self.Payment_Type" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Plane" EntityType="Self.Plane" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Problem" EntityType="Self.Problem" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Problem_Type" EntityType="Self.Problem_Type" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="The_Gym" store:Type="Tables" />
+    <EntitySet Name="Trainer" EntityType="Self.Trainer" Schema="The_Gym" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

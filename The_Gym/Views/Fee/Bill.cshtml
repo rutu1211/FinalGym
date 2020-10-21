@@ -1,0 +1,124 @@
+﻿@model The_Gym.Models.BillModel
+<!doctype html>
+<html class="fixed">
+<head>
+    <title>@Session["GYM_Name"]</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+
+    <link rel="stylesheet" href="~/Content/theme.css" />
+    <link rel="stylesheet" href="~/Content/default.css" />
+</head>
+<body>
+    <section class="panel">
+        <div class="panel-body">
+            <div class="invoice">
+                <header class="clearfix">
+                    <div class="row">
+                        <h1 style="text-align: center;">@Model.GYM_Name ( @Model.Branch_Name )</h1>
+                        @*<div class="col-sm-6 mt-md">
+                                <h2 class="h2 mt-none mb-sm text-dark text-bold">INVOICE</h2>
+                                <h4 class="h4 m-none text-dark text-bold">#76598345</h4>
+                            </div>*@
+                        @*<div class="col-sm-6 text-right mt-md mb-md">
+                                <address class="ib mr-xlg">
+                                    Okler Themes Ltd
+                                    <br />
+                                    24 Henrietta Street, London, England
+                                    <br />
+                                    Phone: +12 3 4567-8901
+                                    <br />
+                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cea1a5a2abbc8ea1a5a2abbce0a0abba">[email&#160;protected]</a>
+                                </address>
+                                <div class="ib">
+                                    <img src="image/invoice-logo.png" alt="OKLER Themes" />
+                                </div>
+                            </div>*@
+                    </div>
+                </header>
+                <div class="bill-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="bill-to">
+                                <p class="h5 mb-xs text-dark text-semibold">@Model.Student_Name</p>
+                                @*<address>
+                                        Envato
+                                        <br />
+                                        121 King Street, Melbourne, Australia
+                                        <br />
+                                        Phone: +61 3 8376 6284
+                                        <br />
+                                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="650c0b030a25000b1304110a4b060a08">[email&#160;protected]</a>
+                                    </address>*@
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="bill-data text-right">
+                                <p class="mb-none">
+                                    <span class="text-dark">Invoice Date:</span>
+                                    <span class="value">@Model.Invoice_Date</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table invoice-items">
+                        <thead>
+                            <tr class="h4 text-dark">
+                                <th id="cell-id" class="text-semibold">#</th>
+                                <th id="cell-item" class="text-semibold">Planes</th>
+                                <th id="cell-desc" class="text-semibold">Durations</th>
+                                <th id="cell-price" class="text-center text-semibold">Price</th>
+                                <th id="cell-qty" class="text-center text-semibold">Offers</th>
+                                <th id="cell-qty" class="text-center text-semibold">Discount On bill</th>
+                                <th id="cell-total" class="text-center text-semibold">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="text-semibold text-dark">@Model.Planes_Name</td>
+                                <td>@Model.Durations</td>
+                                <td class="text-center">@Model.Price</td>
+                                <td class="text-center">@Model.Offers%</td>
+                                <td class="text-center">@Model.DiscountOnBill</td>
+                                <td class="text-center">@Model.Total</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="invoice-summary">
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-8">
+                            <table class="table h5 text-dark">
+                                <tbody>
+                                    <tr class="b-top-none">
+                                        <td colspan="2">GST</td>
+                                        <td class="text-left">@Model.GST</td>
+                                    </tr>
+                                    <tr class="h4">
+                                        <td colspan="2">Grand Total</td>
+                                        <td class="text-left">@Model.Grand_Total</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right mr-lg">
+                <a href="@Url.Action("Index","Fee")" class="btn btn-default">Submit Invoice</a>
+                <a href="@Url.Action("Index","Fee")" target="_blank" class="btn btn-primary ml-sm" onclick="printpage()"><i class="fa fa-print"></i> Print</a>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        function printpage() {
+            window.print();
+        }
+    </script>
+
+</body>
+</html>

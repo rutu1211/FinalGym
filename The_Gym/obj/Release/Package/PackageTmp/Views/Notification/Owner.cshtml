@@ -1,0 +1,134 @@
+﻿@model The_Gym.Models.NotificationModel
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/Content/daterangepicker.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/Content/select2.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/adminlte.min.css">
+    <link href="~/Content/main.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Send Notification</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">Create Branch</h3>
+                </div>
+                <!-- /.card-header -->
+                @using (Html.BeginForm("Owner", "Notification", FormMethod.Post))
+                {
+    @Html.AntiForgeryToken()
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MSG)<span style="color: #FF0000;">*</span>
+                                    @Html.TextAreaFor(model => model.MSG, new { @class = "form-control", @placeholder = "Message", @autocomplete = "off", @rows = "5" })
+                                    @Html.ValidationMessageFor(model => model.MSG, "", new { @class = "" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Manager)
+                                    @Html.CheckBoxFor(model => model.Manager)
+                                    @Html.ValidationMessageFor(model => model.Manager, "", new { @class = "" })
+                                </div>
+                                <!-- /.form-group -->
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Trainer)
+                                    @Html.CheckBoxFor(model => model.Trainer)
+                                    @Html.ValidationMessageFor(model => model.Trainer, "", new { @class = "" })
+                                </div>
+                                <!-- /.form-group -->
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Student)
+                                    @Html.CheckBoxFor(model => model.Student)
+                                    @Html.ValidationMessageFor(model => model.Student, "", new { @class = "" })
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+
+                        <button type="submit" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-success" value="Save" name="Save">
+                            Submit
+                        </button>
+                        <button type="submit" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-danger" value="Cancel" name="Cancel">
+                            Cancel
+                        </button>
+                    </div>}
+                <!-- /.card-body -->
+                <div class="card-footer">
+
+                </div>
+            </div>
+            <!-- /.card -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/Scripts/select2.full.min.js"></script>
+    <!-- InputMask -->
+    <script src="~/Scripts/moment.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="~/Scripts/daterangepicker.js"></script>
+
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            $("body").on('click keypress', function () {
+                ResetThisSession();
+            });
+        })
+
+        var timeInSecondsAfterSessionOut = 600; // to change the session time out, change this value. Must be in seconds.
+        var secondTick = 0;
+
+        function ResetThisSession() {
+            secondTick = 0;
+        }
+
+        function StartThisSessionTimer() {
+            secondTick++;
+            var timeLeft = ((timeInSecondsAfterSessionOut - secondTick) / 60).toFixed(0); // in minutes
+            timeLeft = timeInSecondsAfterSessionOut - secondTick;
+            $("#spanTimeLeft").html(timeLeft);
+
+            if (secondTick > timeInSecondsAfterSessionOut) {
+                clearTimeout(tick);
+                window.location = "/Logout.aspx";
+                return;
+            }
+            tick = setTimeout("StartThisSessionTimer()", 1000);
+        }
+
+        StartThisSessionTimer();
+    </script>
+</body>
+</html>

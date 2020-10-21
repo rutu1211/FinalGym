@@ -1,0 +1,106 @@
+﻿@model The_Gym.Models.OfferModel
+@{ Layout = "~/Views/Shared/_CrudLayout.cshtml"; }
+@{ <!-- Main content -->
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Add Offer</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        @using (Html.BeginForm("Create", "Offer", FormMethod.Post))
+                                        {
+                            @Html.AntiForgeryToken()
+                                            <div class="card-body" id="notification">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Name)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Start_Date)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Start_Date, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker", @placeholder = "Start Date", @autocomplete = "off", @id = "Start_Date", @type = "date" })
+                                                            @Html.ValidationMessageFor(model => model.Start_Date, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.row -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.End_Date)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.End_Date, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker", @placeholder = "End Date", @autocomplete = "off", @id = "End_Date", @type = "date" })
+                                                            @Html.ValidationMessageFor(model => model.End_Date, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Discount)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Discount, new { @class = "form-control", @placeholder = "Discount In Percentage", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "Validation_Message" })
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.row -->
+                                                <!--<div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Discount_Type)<span style="color: #FF0000;">*</span>
+                                                            @Html.TextBoxFor(model => model.Discount_Type, new { @class = "form-control", @placeholder = "Discount In Percentage", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.Discount_Type, "", new { @class = "Validation_Message" })
+                                                        </div>-->
+                                                <!-- /.form-group -->
+                                                <!--</div>-->
+                                                <!-- /.col -->
+                                                <!--</div>-->
+                                                <!-- /.row -->
+
+
+                                                <button type="submit" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-success">
+                                                    Submit
+                                                </button>
+                                                <button type="button" class="mb-2 mr-2 border-0 btn-transition btn btn-outline-danger" onclick="location.href='@Url.Action("Index", "Offer")';">
+                                                    Cancel
+                                                </button>
+                                            </div>}
+                                        <!-- /.card-body -->
+                                        <div class="card-footer">
+
+                                        </div>
+                                    </div>
+                                    <!-- /.card -->
+                                </div><!-- /.container-fluid -->
+                            </section> <!-- /.content --> }
+@section scripts {
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        })
+
+        $(document).ready(function () {
+            //$("#Start_Date").datepicker({
+            //    todayBtn: 1,
+            //    autoclose: true,
+            //});
+            //$("#End_Date").datepicker({
+            //    todayBtn: 1,
+            //    autoclose: true
+            //})
+        });
+    </script>
+}
