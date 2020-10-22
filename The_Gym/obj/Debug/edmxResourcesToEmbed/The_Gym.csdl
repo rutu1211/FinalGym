@@ -11,13 +11,13 @@
     <EntitySet Name="Equipments" EntityType="The_GymModel.Equipment" />
     <EntitySet Name="Fees" EntityType="The_GymModel.Fee" />
     <EntitySet Name="GYMs" EntityType="The_GymModel.GYM" />
+    <EntitySet Name="GYM_Fee" EntityType="The_GymModel.GYM_Fee" />
+    <EntitySet Name="GYM_Plan" EntityType="The_GymModel.GYM_Plan" />
     <EntitySet Name="Offers" EntityType="The_GymModel.Offer" />
     <EntitySet Name="Planes" EntityType="The_GymModel.Plane" />
     <EntitySet Name="States" EntityType="The_GymModel.State" />
     <EntitySet Name="Students" EntityType="The_GymModel.Student" />
     <EntitySet Name="Trainers" EntityType="The_GymModel.Trainer" />
-    <EntitySet Name="GYM_Fee" EntityType="The_GymModel.GYM_Fee" />
-    <EntitySet Name="GYM_Plan" EntityType="The_GymModel.GYM_Plan" />
   </EntityContainer>
   <EntityType Name="Branch">
     <Key>
@@ -135,6 +135,26 @@
     <Property Name="IS_Active" Type="Boolean" />
     <Property Name="Plan_ID" Type="Int32" />
   </EntityType>
+  <EntityType Name="GYM_Fee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Plan_ID" Type="Int32" />
+    <Property Name="Start_Date" Type="DateTime" Precision="3" />
+    <Property Name="End_Date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GYM_Plan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Worth" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Duracation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Duracation_NO" Type="Int32" />
+    <Property Name="Number_Of_Student" Type="Int32" />
+  </EntityType>
   <EntityType Name="Offer">
     <Key>
       <PropertyRef Name="ID" />
@@ -219,25 +239,5 @@
     <Property Name="IS_Active" Type="Boolean" />
     <Property Name="Joining_Date" Type="DateTime" Precision="3" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="GYM_Fee">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Plan_ID" Type="Int32" />
-    <Property Name="Start_Date" Type="DateTime" Precision="3" />
-    <Property Name="End_Date" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="GYM_Plan">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Worth" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Duracation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Duracation_NO" Type="Int32" />
-    <Property Name="Number_Of_Student" Type="Int32" />
   </EntityType>
 </Schema>

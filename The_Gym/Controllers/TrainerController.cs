@@ -170,19 +170,42 @@ namespace The_Gym.Controllers
                     }
                     else
                     {
-                        var Branches = db.Branches.ToList();
+                        TrainerModel trainerModel = new TrainerModel();
+                        if (Convert.ToInt32(Session["IDS"]) == 2)
+                        {
+                            ViewBag.trainer = "Create Manager";
+                            trainerModel.Role_ID = 2;
+                        }
+                        if (Convert.ToInt32(Session["IDS"]) == 3)
+                        {
+                            ViewBag.trainer = "Create Trainer";
+                            trainerModel.Role_ID = 3;
+                        }
+                        int GYM_ID = Convert.ToInt32(Session["GYM_ID"]);
+                        var Branches = db.Branches.Where(i => i.GYM_ID == GYM_ID && i.IS_Active == true).ToList();
                         ViewBag.Branch_NAME = Branches;
                         TempData["Error"] = "MailId is alredy registered";
-                        return View();
+                        return View(trainerModel);
                     }
                 }
                 else
                 {
+                    TrainerModel trainerModel = new TrainerModel();
+                    if (Convert.ToInt32(Session["IDS"]) == 2)
+                    {
+                        ViewBag.trainer = "Create Manager";
+                        trainerModel.Role_ID = 2;
+                    }
+                    if (Convert.ToInt32(Session["IDS"]) == 3)
+                    {
+                        ViewBag.trainer = "Create Trainer";
+                        trainerModel.Role_ID = 3;
+                    }
                     int GYM_ID = Convert.ToInt32(Session["GYM_ID"]);
                     var Branches = db.Branches.Where(i => i.GYM_ID == GYM_ID && i.IS_Active == true).ToList();
                     ViewBag.Branch_NAME = Branches;
                     TempData["Error"] = "Please Fill All Required Details.!";
-                    return View();
+                    return View(trainerModel);
                 }
                 return RedirectToAction("GYM_Wise_Trainer_Index", "Trainer", new { ID = Session["IDS"] });
             }
@@ -226,22 +249,42 @@ namespace The_Gym.Controllers
                     }
                     else
                     {
-                        TrainerModel Trainer = new TrainerModel();
+                        TrainerModel trainerModel = new TrainerModel();
+                        if (Convert.ToInt32(Session["IDS"]) == 2)
+                        {
+                            ViewBag.trainer = "Create Manager";
+                            trainerModel.Role_ID = 2;
+                        }
+                        if (Convert.ToInt32(Session["IDS"]) == 3)
+                        {
+                            ViewBag.trainer = "Create Trainer";
+                            trainerModel.Role_ID = 3;
+                        }
                         var Branches = db.Branches.ToList();
                         ViewBag.Branch_NAME = Branches;
-                        Trainer.Branvch_ID = Convert.ToInt32(Session["ID"]);
+                        trainerModel.Branvch_ID = Convert.ToInt32(Session["ID"]);
                         TempData["Error"] = "MailId is alredy registered";
-                        return View(Trainer);
+                        return View(trainerModel);
                     }
                 }
                 else
                 {
-                    TrainerModel Trainer = new TrainerModel();
+                    TrainerModel trainerModel = new TrainerModel();
+                    if (Convert.ToInt32(Session["IDS"]) == 2)
+                    {
+                        ViewBag.trainer = "Create Manager";
+                        trainerModel.Role_ID = 2;
+                    }
+                    if (Convert.ToInt32(Session["IDS"]) == 3)
+                    {
+                        ViewBag.trainer = "Create Trainer";
+                        trainerModel.Role_ID = 3;
+                    }
                     var Branches = db.Branches.ToList();
                     ViewBag.Branch_NAME = Branches;
-                    Trainer.Branvch_ID = Convert.ToInt32(Session["ID"]);
+                    trainerModel.Branvch_ID = Convert.ToInt32(Session["ID"]);
                     TempData["Error"] = "Please Fill All Required Details.!";
-                    return View(Trainer);
+                    return View(trainerModel);
                 }
                 return RedirectToAction("Branch_Wise_Trainer_Index", "Trainer", new { ID = Session["ID"], IDS = Session["IDS"] });
             }
@@ -353,20 +396,56 @@ namespace The_Gym.Controllers
                     }
                     else
                     {
-                        int GYM_ID = Convert.ToInt32(Session["GYM_ID"]);
-                        var Branches = db.Branches.Where(i => i.GYM_ID == GYM_ID && i.IS_Active == true).ToList();
-                        ViewBag.Branch_NAME = Branches;
-                        TempData["Error"] = "MailId is alredy registered";
-                        return View();
+                        if (Convert.ToInt32(Session["IDS"]) == 2)
+                        {
+                            ViewBag.trainer = "Edit Manager";
+                        }
+                        if (Convert.ToInt32(Session["IDS"]) == 3)
+                        {
+                            ViewBag.trainer = "Edit Trainer";
+                        }
+                        var Details = db.Trainers.Where(b => b.ID == model.ID).FirstOrDefault();
+                        if (Details != null)
+                        {
+                            int GYM_ID = Convert.ToInt32(Session["GYM_ID"]);
+                            var Branches = db.Branches.Where(i => i.GYM_ID == GYM_ID && i.IS_Active == true).ToList();
+                            ViewBag.Branch_NAME = Branches;
+                            var Trainer = Mapper.Map<TrainerModel>(Details);
+                            TempData["Error"] = "MailId is alredy registered";
+                            return View(Trainer); ;
+                        }
+                        else
+                        {
+                            TempData["Error"] = "MailId is alredy registered";
+                            return View();
+                        }
                     }
                 }
                 else
                 {
-                    int GYM_ID = Convert.ToInt32(Session["GYM_ID"]);
-                    var Branches = db.Branches.Where(i => i.GYM_ID == GYM_ID && i.IS_Active == true).ToList();
-                    ViewBag.Branch_NAME = Branches;
-                    TempData["Error"] = "Please Fill All Required Details.!";
-                    return View();
+                    if (Convert.ToInt32(Session["IDS"]) == 2)
+                    {
+                        ViewBag.trainer = "Edit Manager";
+                    }
+                    if (Convert.ToInt32(Session["IDS"]) == 3)
+                    {
+                        ViewBag.trainer = "Edit Trainer";
+                    }
+                    var Details = db.Trainers.Where(b => b.ID == model.ID).FirstOrDefault();
+                    if (Details != null)
+                    {
+                        int GYM_ID = Convert.ToInt32(Session["GYM_ID"]);
+                        var Branches = db.Branches.Where(i => i.GYM_ID == GYM_ID && i.IS_Active == true).ToList();
+                        ViewBag.Branch_NAME = Branches;
+                        var Trainer = Mapper.Map<TrainerModel>(Details);
+                        TempData["Error"] = "Please Fill All Required Details.!";
+                        return View(Trainer);
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Please Fill All Required Details.!";
+                        return View();
+                    }
                 }
                 return RedirectToAction("GYM_Wise_Trainer_Index", "Trainer", new { ID = Session["IDS"] });
             }
@@ -408,22 +487,59 @@ namespace The_Gym.Controllers
                     }
                     else
                     {
-                        TrainerModel Trainer = new TrainerModel();
-                        var Branches = db.Branches.ToList();
-                        ViewBag.Branch_NAME = Branches;
-                        Trainer.Branvch_ID = Convert.ToInt32(Session["ID"]);
-                        TempData["Error"] = "MailId is alredy registered";
-                        return View(Trainer);
+                        if (Convert.ToInt32(Session["IDS"]) == 2)
+                        {
+                            ViewBag.trainer = "Edit Manager";
+                        }
+                        if (Convert.ToInt32(Session["IDS"]) == 3)
+                        {
+                            ViewBag.trainer = "Edit Trainer";
+                        }
+                        var Details = db.Trainers.Where(b => b.ID == model.ID).FirstOrDefault();
+                        if (Details != null)
+                        {
+                            TrainerModel Trainer = new TrainerModel();
+                            var Branches = db.Branches.ToList();
+                            ViewBag.Branch_NAME = Branches;
+                            Trainer.Branvch_ID = Convert.ToInt32(Session["ID"]);
+                            var Trainers = Mapper.Map<TrainerModel>(Details);
+                            TempData["Error"] = "MailId is alredy registered";
+                            return View(Trainers); ;
+                        }
+                        else
+                        {
+                            TempData["Error"] = "MailId is alredy registered";
+                            return View();
+                        }
+                        
                     }
                 }
                 else
                 {
-                    TrainerModel Trainer = new TrainerModel();
-                    var Branches = db.Branches.ToList();
-                    ViewBag.Branch_NAME = Branches;
-                    Trainer.Branvch_ID = Convert.ToInt32(Session["ID"]);
-                    TempData["Error"] = "Please Fill All Required Details.!";
-                    return View(Trainer);
+                    if (Convert.ToInt32(Session["IDS"]) == 2)
+                    {
+                        ViewBag.trainer = "Edit Manager";
+                    }
+                    if (Convert.ToInt32(Session["IDS"]) == 3)
+                    {
+                        ViewBag.trainer = "Edit Trainer";
+                    }
+                    var Details = db.Trainers.Where(b => b.ID == model.ID).FirstOrDefault();
+                    if (Details != null)
+                    {
+                        TrainerModel Trainer = new TrainerModel();
+                        var Branches = db.Branches.ToList();
+                        ViewBag.Branch_NAME = Branches;
+                        Trainer.Branvch_ID = Convert.ToInt32(Session["ID"]);
+                        var Trainers = Mapper.Map<TrainerModel>(Details);
+                        TempData["Error"] = "Please Fill All Required Details.!";
+                        return View(Trainers); ;
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Please Fill All Required Details.!";
+                        return View();
+                    }
                 }
                 return RedirectToAction("Branch_Wise_Trainer_Index", "Trainer", new { ID = Session["ID"], IDS = Session["IDS"] });
             }

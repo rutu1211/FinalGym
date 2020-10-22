@@ -1,7 +1,9 @@
 ﻿@model The_Gym.Models.DemoModel
+
 @{
     Layout = "~/Views/Shared/_CrudLayout.cshtml";
 }
+
 @{
     <!-- Main content -->
     <section class="content">
@@ -99,4 +101,15 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+}
+
+@section scripts {
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        });
+    </script>
+
 }

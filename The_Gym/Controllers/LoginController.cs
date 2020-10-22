@@ -53,9 +53,9 @@ namespace The_Gym.Controllers
 					{
 						if (trainer.Password == model.Password)
 						{
-							//var gym = db.GYMs.Where(i => i.ID == trainer.GYM_ID).FirstOrDefault();
-       //                     if (gym.IS_Active == true)
-       //                     {
+							var gym = db.GYMs.Where(i => i.ID == trainer.GYM_ID).FirstOrDefault();
+		                    if (gym.IS_Active == true)
+                            {
 								Session["Trainer_ID"] = trainer.ID;
 								Session["Trainer_Role"] = trainer.Role_ID;
 								Session["Name"] = trainer.First_Name + " " + trainer.Last_Name;
@@ -87,19 +87,19 @@ namespace The_Gym.Controllers
 									FormsAuthentication.SetAuthCookie(model.Email, false);
 									return RedirectToAction("Manager", "Dashbord");
 								}
-							//}
-       //                     else
-       //                     {
-							//	if (Request.Cookies["UserName"] != null)
-							//	{
-							//		LoginModel loginModel = new LoginModel();
-							//		loginModel.Email = Request.Cookies["UserName"].Value;
-							//		loginModel.Remember_Me = true;
-							//		TempData["Error"] = "Invalid Email Id.!";
-							//		return View(loginModel);
-							//	}
-							//}
-						}
+                            }
+                            else
+                            {
+                                if (Request.Cookies["UserName"] != null)
+                                {
+                                    LoginModel loginModel = new LoginModel();
+                                    loginModel.Email = Request.Cookies["UserName"].Value;
+                                    loginModel.Remember_Me = true;
+                                    TempData["Error"] = "Invalid Email Id.!";
+                                    return View(loginModel);
+                                }
+                            }
+                        }
 						else
 						{
 							if (Request.Cookies["UserName"] != null)
@@ -236,7 +236,7 @@ namespace The_Gym.Controllers
 							db.Trainers.Add(trainer);
 							db.SaveChanges();
 							TempData["Success"] = "You are registered sucessfully!! Password has been sent to your registered mail id";
-							return RedirectToAction("Signup", "Login", new { ID = model.ID });
+							return RedirectToAction("Login", "Login", new { ID = model.ID });
 						}
 					}
 					else
@@ -360,7 +360,11 @@ namespace The_Gym.Controllers
 				else
 				{
 					TempData["Error"] = "Please Fill All Required Details.!";
-					return View();
+					int ID = Convert.ToInt32(Session["Trainer_ID"]);
+					var trainer = db.Trainers.Where(i => i.ID == ID).FirstOrDefault();
+					Reset_PasswordModel Reset_PasswordModel = new Reset_PasswordModel();
+					Reset_PasswordModel.Role_ID = Convert.ToInt32(trainer.Role_ID);
+					return View(Reset_PasswordModel);
 				}
 			}
 
@@ -401,38 +405,42 @@ namespace The_Gym.Controllers
 					var demo = db.Demoes.Where(i => i.Email_ID == model.Email).FirstOrDefault();
 					if (trainers == null && students == null && demo == null)
 					{
-						var trainerss = db.Trainers.Where(i => i.Email_ID == model.Email).FirstOrDefault();
-						if (trainerss == null)
+						var trainer = db.Trainers.Where(i => i.ID == ID).FirstOrDefault();
+						if (trainer != null)
 						{
-							var trainer = db.Trainers.Where(i => i.ID == ID).FirstOrDefault();
-							if (trainer != null)
+							trainer.Email_ID = model.Email;
+							db.SaveChanges();
+							TempData["Success"] = "Email has been reset successfully!! ";
+							if (trainer.Role_ID == 1)
 							{
-								trainer.Email_ID = model.Email;
-								db.SaveChanges();
-								TempData["Success"] = "Email has been reset successfully!! ";
-								if (trainer.Role_ID == 1)
-								{
-									return RedirectToAction("Owner", "Dashbord");
-								}
-								if (trainer.Role_ID == 2)
-								{
-									return RedirectToAction("Manager", "Dashbord");
-								}
+								return RedirectToAction("Owner", "Dashbord");
 							}
-							return View();
+							if (trainer.Role_ID == 2)
+							{
+								return RedirectToAction("Manager", "Dashbord");
+							}
 						}
 					}
                     else
                     {
 						TempData["Error"] = "MailId is alredy registered";
+						int Trainer_ID = Convert.ToInt32(Session["Trainer_ID"]);
+						var trainer = db.Trainers.Where(i => i.ID == Trainer_ID).FirstOrDefault();
+						Reset_EmailModel Reset_EmailModel = new Reset_EmailModel();
+						Reset_EmailModel.Role_ID = Convert.ToInt32(trainer.Role_ID);
+						return View(Reset_EmailModel);
 					}
-					return View();
 				}
 				else
 				{
 					TempData["Error"] = "Please Fill All Required Details.!";
-					return View();
+					int Trainer_ID = Convert.ToInt32(Session["Trainer_ID"]);
+					var trainer = db.Trainers.Where(i => i.ID == Trainer_ID).FirstOrDefault();
+					Reset_EmailModel Reset_EmailModel = new Reset_EmailModel();
+					Reset_EmailModel.Role_ID = Convert.ToInt32(trainer.Role_ID);
+					return View(Reset_EmailModel);
 				}
+				return View();
 			}
 
 			catch (Exception ex)
@@ -489,8 +497,28 @@ namespace The_Gym.Controllers
 				else
 				{
 					TempData["Error"] = "Please Fill All Required Details.!";
-					return View();
+					int ID = Convert.ToInt32(Session["Trainer_ID"]);
+					var trainer = db.Trainers.Where(i => i.ID == ID).FirstOrDefault();
+					Send_FeedbackModel send_FeedbackModel = new Send_FeedbackModel();
+					send_FeedbackModel.Email = trainer.Email_ID;
+					send_FeedbackModel.Name = trainer.First_Name + " " + trainer.Last_Name;
+					send_FeedbackModel.Role_ID = Convert.ToInt32(trainer.Role_ID);
+					return View(send_FeedbackModel);
 				}
+			}
+
+			catch (Exception ex)
+			{
+				return RedirectToAction("Contact", "Home");
+			}
+		}
+
+		[HttpGet]
+		public ActionResult Bill()
+		{
+			try
+			{
+				return View();
 			}
 
 			catch (Exception ex)

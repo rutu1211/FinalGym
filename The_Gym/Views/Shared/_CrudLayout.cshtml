@@ -28,24 +28,26 @@
 <body>
     @if (TempData["Success"] != null)
     {
-<script>
+        <script>
             $(function () {
                 var Success = '@TempData["Success"]';
                 if (Success != null) {
                     createAlert('', 'Success', Success, 'success', false, true, 'notification');
                 }
             });
-</script>}
+        </script>
+    }
     @if (TempData["Error"] != null)
     {
-<script>
+        <script>
             $(function () {
                 var Error = '@TempData["Error"]';
                 if (Error != null) {
                     createAlert('', 'Error', Error, 'danger', false, true, 'notification');
                 }
             });
-</script>}
+        </script>
+    }
     <!-- Main content -->
     @RenderBody()
     <!-- /.content -->
@@ -65,4 +67,3 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-

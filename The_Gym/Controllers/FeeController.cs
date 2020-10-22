@@ -26,7 +26,7 @@ namespace The_Gym.Controllers
             try
             {
                 int Branch_ID = Convert.ToInt32(Session["Branvch_ID"]);
-                var Fees = db.Fees.Where(i => i.Branch_ID == Branch_ID).OrderByDescending(i => i.ID).ToList();
+                var Fees = db.Fees.Where(i => i.Branch_ID == Branch_ID && i.Status == true).OrderByDescending(i => i.ID).ToList();
                 List<FeeStudentPlaneOfferModel> FeeStudentPlaneOfferModelList = new List<FeeStudentPlaneOfferModel>();
                 foreach (var Fee in Fees)
                 {
@@ -36,9 +36,9 @@ namespace The_Gym.Controllers
                     PlaneModel PlaneModel = new PlaneModel();
                     OfferModel OfferModel = new OfferModel();
 
-                    var Plane = db.Planes.Where(i => i.ID == Fee.ID).FirstOrDefault();
-                    var Offer = db.Offers.Where(i => i.ID == Fee.ID).FirstOrDefault();
-                    var Student = db.Students.Where(i => i.ID == Fee.ID).FirstOrDefault();
+                    var Plane = db.Planes.Where(i => i.ID == Fee.Plane_ID).FirstOrDefault();
+                    var Offer = db.Offers.Where(i => i.ID == Fee.Offer_ID).FirstOrDefault();
+                    var Student = db.Students.Where(i => i.ID == Fee.Student_ID).FirstOrDefault();
 
                     FeeModel.ID = Fee.ID;
                     FeeModel.Payment_Date = Fee.Payment_Date;
@@ -46,7 +46,10 @@ namespace The_Gym.Controllers
                     PlaneModel.GST = Fee.GST;
                     FeeModel.Payment_Amount = Fee.Payment_Amount;
                     FeeModel.Discount_On_Bill = Fee.Discount_On_Bill;
-                    OfferModel.Name = Offer.Name;
+                    if(Offer != null)
+                    {
+                        OfferModel.Name = Offer.Name;
+                    }
                     PlaneModel.Name = Plane.Name;
                     PlaneModel.Worth = Plane.Worth;
                     StudentModel.Full_Name = Student.First_Name + " " + Student.Last_Name;
@@ -126,22 +129,13 @@ namespace The_Gym.Controllers
                     Fee.Payment_Date = DateTime.Now;
                     var plane = db.Planes.Where(i => i.ID == model.Plane_ID).FirstOrDefault();
                     Fee.GST = model.GST;
+                    Fee.Status = true;
                     Fee.Discount_On_Bill = model.Discount_On_Bill;
                     db.Fees.Add(Fee);
                     db.SaveChanges();
 
                     new Thread(new ThreadStart(() =>
                     {
-                        var delete = db.Fees.Where(i => /*i.Student_ID == model.Student_ID &&*/ i.ID != Fee.ID && i.Payment_Date.Value.Month != DateTime.Now.Month && i.End_Date < DateTime.Now).ToList();
-                        if (delete != null)
-                        {
-                            foreach (var data in delete)
-                            {
-                                db.Fees.Remove(data);
-                                db.SaveChanges();
-                            }
-                        }
-
                         var dataExists = db.Students.Where(b => b.ID == model.Student_ID).FirstOrDefault();
                         if (dataExists != null)
                         {

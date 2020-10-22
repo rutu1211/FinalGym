@@ -89,7 +89,7 @@ img {
 /*--end reset--*/
 body {
     font-family: 'Roboto', sans-serif;
-    background: url(http://www.theballantynehotel.com/assets/Fitness_Center_2018_001.jpg ) no-repeat 0px 0px;
+    background: url(../Image/XYZ/login.jpg) no-repeat 0px 0px;
     background-size: cover;
     background-attachment: fixed;
 }

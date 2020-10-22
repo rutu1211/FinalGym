@@ -155,7 +155,6 @@ namespace The_Gym.Controllers
                     if (dataExists != null)
                     {
                         dataExists.Duration_No = model.Duration_No;
-                        dataExists.Is_Active = model.Is_Active;
                         dataExists.Duration = model.Duration;
                         dataExists.Name = model.Name;
                         dataExists.Worth = model.Worth;

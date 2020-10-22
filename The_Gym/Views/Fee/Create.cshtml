@@ -1,7 +1,9 @@
 ﻿@model The_Gym.Models.FeeModel
+
 @{
     Layout = "~/Views/Shared/_CrudLayout.cshtml";
 }
+
 @{
     <!-- Main content -->
     <section class="content">
@@ -122,6 +124,7 @@
     </section>
     <!-- /.content -->
 }
+
 @section scripts {
 
 
@@ -140,6 +143,12 @@
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2()
+            //$("#Start_Date").prop("disabled", true);
+            //$("#End_Date").prop("disabled", true);
+            //$("#Offer_ID").prop("disabled", true);
+            //$("#Discount_Onbill").prop("disabled", true);
+            //$("#GST").prop("disabled", true);
+            //$("#Payment_Amount").prop("disabled", true);
         });
 
         $("#Plane_ID").change(function () {
@@ -175,6 +184,8 @@
                         var day = today_date.getDate();
                         var today_Date_Str = year + "-" + ((month < 9) ? "0" : "") + String(month) + "-" + ((day < 10) ? "0" : "") + String(day);
                         $('#Start_Date').val(today_Date_Str);
+                        //$("#Offer_ID").prop("disabled", false)
+                        //$("#Discount_Onbill").prop("disabled", false)
 
                         duration = null;
                         duration = d.Duration;

@@ -11,6 +11,7 @@
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "Validation_Message" })
             @Html.TextBoxFor(model => model.Repeat_Email, new { @class = "form-control", @placeholder = "Repeat Email", @autocomplete = "off" })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "Validation_Message" })
+            @Html.HiddenFor(model => model.Role_ID)
             <input type="submit" class="send" value="Update Password">
             <div class="signin-agileits-bottom">
                 @if (Model.Role_ID == 1)

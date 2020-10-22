@@ -10,6 +10,6 @@ namespace The_Gym.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public Nullable<bool> IS_Active { get; set; }
-        public Nullable<bool> Pro { get; set; }
+        public Nullable<int> Plan_ID { get; set; }
     }
 }

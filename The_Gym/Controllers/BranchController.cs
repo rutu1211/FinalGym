@@ -308,7 +308,7 @@ namespace The_Gym.Controllers
                             var Citi = db.Cities.Where(i => i.State_ID == 0).ToList();
                             ViewBag.City_Name = Citi;
                         }
-                        TempData["Success"] = "Please Fill All Required Details.!";
+                        TempData["Error"] = "Branch name is already registered.!";
                         return View();
                     }
                 }
@@ -325,7 +325,7 @@ namespace The_Gym.Controllers
                     ViewBag.State_Name = State;
                     var Citi = db.Cities.Where(i => i.State_ID == model.State_ID).ToList();
                     ViewBag.City_Name = Citi;
-                    TempData["Success"] = "Please Fill All Required Details.!";
+                    TempData["Error"] = "Please Fill All Details.!";
                     return View();
                 }
                 return RedirectToAction("Index", "Branch");

@@ -47,6 +47,7 @@ namespace The_Gym.Models
         public Nullable<decimal> GST_Amount { get; set; }
 
         public string Duration { get; set; }
+        public Nullable<bool> Status { get; set; }
     }
 
     public class PlaneBranch_Wise_PlaneModel

@@ -1,6 +1,55 @@
 ﻿@*//Role = Owner : 1, Manager : 2, Trainer : 3
-//Duraction = Year : 1, Month : 2, Day : 3
-//Gym Packge = Nonstop : true, Stop : Fals
-// Login = Demo : 1, Premium : 2, Dedicated : 3 
-// StudentController Session["ID"] = Branch ID
-// TrainerController Session["ID"] = Branch ID // Session["IDS"] = Role ID // Session["TID"] = Trainer ID // Session["DID"] = Demo ID*@
+    //Duraction = Year : 1, Month : 2, Day : 3
+    //Gym Packge = Nonstop : true, Stop : Fals
+    // Login = Demo : 1, Premium : 2, Dedicated : 3
+    // StudentController Session["ID"] = Branch ID
+    // TrainerController Session["ID"] = Branch ID // Session["IDS"] = Role ID // Session["TID"] = Trainer ID // Session["DID"] = Demo ID*@
+
+<style>
+    .btn.active {
+        display: none;
+    }
+
+    .btn span:nth-of-type(1) {
+        display: none;
+    }
+
+    .btn span:last-child {
+        display: block;
+    }
+
+    .btn.active span:nth-of-type(1) {
+        display: block;
+    }
+
+    .btn.active span:last-child {
+        display: none;
+    }
+</style>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+    <h1 class="text-center">Toggle!</h1>
+</div>
+
+<div class="" data-toggle="buttons">
+    <label class="btn btn-lg btn-block btn-success text-success active">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+        <i class="fa fa-check-circle-o fa-3x animated fadeIn"></i>
+        <br />
+        Pago
+    </label>
+    <label class="btn btn-lg btn-block btn-default text-default">
+        <input type="radio" name="options" id="option2" autocomplete="off">
+        <i class="fa fa-circle-o fa-3x"></i>
+        <br />
+        Não pago
+    </label>
+</div>

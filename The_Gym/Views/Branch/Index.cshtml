@@ -45,11 +45,17 @@
                     <td>@v.Branch.Pin_Code</td>
                     @if (v.Branch.IS_Active == true)
                     {
-                        <td style="text-align: center;"><input type="checkbox" id="checkboxPrimary" value=@v.Branch.ID checked></td> 
+                        <td>
+                            <a id="checkboxPrimary"><i class="fa fa-check-circle-o fa-2x animated fadeIn"></i></a>
+                            <input type="hidden" id="custId" name="custId" value=@v.Branch.ID>
+                        </td>
                     }
                     else
                     {
-                        <td style="text-align: center;"><input type="checkbox" id="checkboxPrimary" value=@v.Branch.ID></td>
+                        <td>
+                            <a id="checkboxPrimary"><i class="fa fa-circle-o fa-2x"></i></a>
+                            <input type="hidden" id="custId" name="custId" value=@v.Branch.ID>
+                        </td>
                     }
                     <td>
                         <button type="button" class="btn btn-primary btn-xs dt-edit" style="margin-right:6px;" data-toggle="tooltip" data-placement="top" title="Edit" onclick="location.href = '@Url.Action("Edit", "Branch", new { ID = v.Branch.ID })'">
@@ -134,11 +140,11 @@
 
             //Change Branch Status
             $('#checkboxPrimary').each(function () {
-                $(this).change(function () {
+                $(this).on('click', function (evt) {
                     $.ajax({
                         type: "GET",
                         url: "/Branch/ChangeBranchStatus/",
-                        data: "ID=" + $(this).val(),
+                        data: "ID=" + $('#custId').val(),
                         success: function (text) {
                             if (text == "success") {
                                 console.log("sucess");

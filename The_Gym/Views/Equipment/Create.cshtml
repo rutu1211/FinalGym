@@ -12,24 +12,26 @@
 <body>
     @if (TempData["Success"] != null)
     {
-<script>
+        <script>
             $(function () {
                 var Success = '@TempData["Success"]';
                 if (Success != null) {
                     createAlert('', 'Success', Success, 'success', false, true, 'notification');
                 }
             });
-</script>}
+        </script>
+    }
     @if (TempData["Error"] != null)
     {
-<script>
+        <script>
             $(function () {
                 var Error = '@TempData["Error"]';
                 if (Error != null) {
                     createAlert('', 'Error', Error, 'danger', false, true, 'notification');
                 }
             });
-</script>}
+        </script>
+    }
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -41,7 +43,7 @@
                 <!-- /.card-header -->
                 @using (Html.BeginForm("Create", "Equipment", FormMethod.Post))
                 {
-    @Html.AntiForgeryToken()
+                    @Html.AntiForgeryToken()
                     <div class="card-body" id="notification">
                         <div class="row">
                             <div class="col-md-6">
@@ -88,28 +90,28 @@
             //});
         })
 
-            //var timeInSecondsAfterSessionOut = 600; // to change the session time out, change this value. Must be in seconds.
-            //var secondTick = 0;
+                //var timeInSecondsAfterSessionOut = 600; // to change the session time out, change this value. Must be in seconds.
+                //var secondTick = 0;
 
-            //function ResetThisSession() {
-            //    secondTick = 0;
-            //}
+                //function ResetThisSession() {
+                //    secondTick = 0;
+                //}
 
-            //function StartThisSessionTimer() {
-            //    secondTick++;
-            //    var timeLeft = ((timeInSecondsAfterSessionOut - secondTick) / 60).toFixed(0); // in minutes
-            //    timeLeft = timeInSecondsAfterSessionOut - secondTick;
-            //    $("#spanTimeLeft").html(timeLeft);
+                //function StartThisSessionTimer() {
+                //    secondTick++;
+                //    var timeLeft = ((timeInSecondsAfterSessionOut - secondTick) / 60).toFixed(0); // in minutes
+                //    timeLeft = timeInSecondsAfterSessionOut - secondTick;
+                //    $("#spanTimeLeft").html(timeLeft);
 
-            //    if (secondTick > timeInSecondsAfterSessionOut) {
-            //        clearTimeout(tick);
-            //        window.location = "/Logout.aspx";
-            //        return;
-            //    }
-            //    tick = setTimeout("StartThisSessionTimer()", 1000);
-            //}
+                //    if (secondTick > timeInSecondsAfterSessionOut) {
+                //        clearTimeout(tick);
+                //        window.location = "/Logout.aspx";
+                //        return;
+                //    }
+                //    tick = setTimeout("StartThisSessionTimer()", 1000);
+                //}
 
-            //StartThisSessionTimer();
+                //StartThisSessionTimer();
     </script>
 </body>
 </html>

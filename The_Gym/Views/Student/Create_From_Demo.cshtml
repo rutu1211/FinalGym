@@ -62,7 +62,7 @@
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.DOB)<span style="color: #FF0000;">*</span>
                                                             <div class="input-group date" data-date-format="dd.mm.yyyy">
-                                                                @Html.TextBoxFor(model => model.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @placeholder = "Date Of Birth", @autocomplete = "off", @id = "DOB",@type = "date" })
+                                                                @Html.TextBoxFor(model => model.DOB, new { @class = "form-control", @placeholder = "Date Of Birth", @autocomplete = "off", @id = "DOB" })
                                                             </div>
                                                             @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "Validation_Message" })
                                                         </div>
